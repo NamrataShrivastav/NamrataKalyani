@@ -1,0 +1,84 @@
+﻿@model NamrataKalyani.Models.Dignostic
+<script>
+    function func1() {
+        if ($('testName').value == "BiochemistoryReportLIPID"
+        ) {
+            $.ajax({
+                url: "/Doc/ClinicalBiochemistoryReportLIPIDProfile", success: function (result) {
+                    alert('ClinicalBiochemistoryReportLIPIDProfile');
+                }
+            });
+        }
+        else if ($('testName').value == "BiochemistoryReportLTF"
+        ) {
+            $.ajax({
+                url: "demo_test.txt", success: function (result) {
+                    
+                }
+            });
+        }
+        else {
+            $.ajax({
+                url: "demo_test.txt", success: function (result) {
+                    
+                }
+            });
+        }
+    }
+  
+</script>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Dignostic</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.did, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.did, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.did, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.testName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ValidationMessageFor(model => model.testName, "", new { @class = "text-danger" })
+            @Html.DropDownList("testName",new List<SelectListItem>
+           ()
+       {
+           new SelectListItem{Text="BiochemistoryReportLIPID"},
+           new SelectListItem{Text="BiochemistoryReportLTF"},
+           new SelectListItem{Text="BloodPictureReport"}
+       }, htmlAttributes: new { @class = "control-label col-md-4" })
+            
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default" onclick="func1()" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
