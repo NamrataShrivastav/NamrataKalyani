@@ -141,8 +141,10 @@
     <Compile Include="Models\ClinicalBiochemistoryReportLIPIDProfileModel.cs" />
     <Compile Include="Models\ClinicalBiochemistoryReportLTFModel.cs" />
     <Compile Include="Models\ComputerBloodPictureReportModel.cs" />
+    <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\Dignostic.cs" />
     <Compile Include="Models\DoctorInfoModel.cs" />
+    <Compile Include="Models\GetAllReportsByPatientIdModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PatientInfoModel.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
@@ -155,6 +157,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Design\fancyTable.min.js" />
     <Content Include="Content\Forms.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -187,8 +190,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Doc\ClinicalBiochemistoryReportLIPIDProfile.cshtml" />
-    <Content Include="Views\Doc\ClinicalBiochemistoryReportLTF.cshtml" />
     <Content Include="Views\Doc\ComputerBloodPictureReport.cshtml" />
     <Content Include="Views\Doc\DoctorInfo.cshtml" />
     <Content Include="Views\Doc\Index.cshtml" />
@@ -201,6 +202,15 @@
     <Content Include="Views\Doc\ComputerBloodPictureReportList.cshtml" />
     <Content Include="Views\Doc\Print_CBPReport.cshtml" />
     <Content Include="Views\Doc\Print_CBPReport1.cshtml" />
+    <Content Include="Views\Doc\Print_LTFReport.cshtml" />
+    <Content Include="Views\Doc\Print_LIPIDProfileReport.cshtml" />
+    <Content Include="Views\Doc\ClinicalBiochemistoryReportLIPIDProfile.cshtml" />
+    <Content Include="Views\Doc\ClinicalBiochemistoryReportLIPIDProfileList.cshtml" />
+    <Content Include="Views\Doc\ClinicalBiochemistoryReportLTF.cshtml" />
+    <Content Include="Views\Doc\ClinicalBiochemistoryReportLTFList.cshtml" />
+    <Content Include="Views\Doc\Dashboard.cshtml" />
+    <Content Include="Views\Doc\PatientReport.cshtml" />
+    <Content Include="Views\Doc\GetAllReportsByPatientId.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

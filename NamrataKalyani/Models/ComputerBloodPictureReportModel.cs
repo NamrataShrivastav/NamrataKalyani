@@ -10,7 +10,13 @@ namespace NamrataKalyani.Models
     public class ComputerBloodPictureReportModel
     {
         public int cbpid { get; set; }
+        [DisplayName("Pid")]
         public int pid { get; set; }
+        [DisplayName("Date")]
+        public DateTime date { get; set; }
+
+        [DisplayName("Report Name")]
+        public string Name { get; set; }
         public string Pname { get; set; }
         [DisplayName("Doctor Name")]
         public string Doc_Name { get; set; }
@@ -27,8 +33,7 @@ namespace NamrataKalyani.Models
         public string branchLocation { get; set; }
         [DisplayName("Full Address")]
         public string fullAddress { get; set; }
-        [DisplayName("Date")]
-        public DateTime date { get; set; }
+ 
         [DisplayName("Haemoglobin")]
         public string haemoglobin { get; set; }
         [DisplayName("ErythrocyteCount")]
@@ -54,6 +59,5 @@ namespace NamrataKalyani.Models
         [DisplayName("Basophils")]
         public string basophils { get; set; }
 
-        
     }
 }

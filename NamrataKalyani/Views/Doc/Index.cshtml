@@ -1,78 +1,56 @@
-﻿@model NamrataKalyani.Models.Dignostic
+﻿@model NamrataKalyani.Models.DashboardModel
+
 <script>
-    function func1() {
-        if ($('testName').value == "BiochemistoryReportLIPID"
-        ) {
-            $.ajax({
-                url: "/Doc/ClinicalBiochemistoryReportLIPIDProfile", success: function (result) {
-                    alert('ClinicalBiochemistoryReportLIPIDProfile');
-                }
-            });
-        }
-        else if ($('testName').value == "BiochemistoryReportLTF"
-        ) {
-            $.ajax({
-                url: "demo_test.txt", success: function (result) {
-                    
-                }
-            });
-        }
-        else {
-            $.ajax({
-                url: "demo_test.txt", success: function (result) {
-                    
-                }
-            });
-        }
+    function ChangeReportType() {
+         
+        window.location = "http://localhost:54429/Doc/ComputerBloodPictureReport";
+
+             //window.location.href = '@Url.Action("ComputerBloodPictureReport", "Doc")';
+
+        //if (SelectListItem =="BloodPictureReport") {
+        //    window.location = "http://localhost:54429/Doc/ComputerBloodPictureReport";
+        //} else if (SelectListItem =="BiochemistoryReportLIPID") {
+        //    window.location = "http://localhost:54429/Doc/ClinicalBiochemistoryReportLIPIDProfile";
+        //} else {
+        //    window.location = "http://localhost:54429/Doc/ClinicalBiochemistoryReportLTF";
+        //}
     }
-  
 </script>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Dignostic</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.did, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.did, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.did, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
 
+    <form class="form-control">
         <div class="form-group">
-            @Html.LabelFor(model => model.pname, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pname, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pname, "", new { @class = "text-danger" })
+
+            <hr />
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+          
+            <div class="form-group">
+                @Html.LabelFor(model => model.ReportType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.ValidationMessageFor(model => model.ReportType, "", new { @class = "text-danger" })
+                    @Html.DropDownList("ReportType", new List<SelectListItem>
+                   ()
+               {
+                   new SelectListItem{Text="BiochemistoryReportLIPID"},
+                   new SelectListItem{Text="BiochemistoryReportLTF"},
+                   new SelectListItem{Text="BloodPictureReport" },
+               }, htmlAttributes: new { @class = "control-label col-md-4" })
+
+                </div>
+            </div>
+
+
+            <div class="btn-group-justified">
+                <div class="col-md-offset-2 col-md-4">
+                    <input type="button" value="Create Test" class="btn btn-default" onclick="ChangeReportType();" />
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.testName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.ValidationMessageFor(model => model.testName, "", new { @class = "text-danger" })
-            @Html.DropDownList("testName",new List<SelectListItem>
-           ()
-       {
-           new SelectListItem{Text="BiochemistoryReportLIPID"},
-           new SelectListItem{Text="BiochemistoryReportLTF"},
-           new SelectListItem{Text="BloodPictureReport"}
-       }, htmlAttributes: new { @class = "control-label col-md-4" })
-            
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Submit" class="btn btn-default" onclick="func1()" />
-            </div>
-        </div>
-    </div>
+    </form>
 }
 
 <div>

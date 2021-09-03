@@ -8,6 +8,7 @@ namespace NamrataKalyani.Models
     public class DoctorInfoModel
     {
         public int docid { get; set; }
+        public string Doc_Name { get; set; }
         public string Logo { get; set; }
         public string consultuntPathologistdname { get; set; }
         public string consultuntPathologistdegree { get; set; }

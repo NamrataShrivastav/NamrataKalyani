@@ -15,5 +15,6 @@ namespace NamrataKalyani.Models
         public string email { get; set; }
         [DisplayName("Password")]
         public string Passward { get; set; }
+        public string Name_Mobile { get; set; }
     }
 }

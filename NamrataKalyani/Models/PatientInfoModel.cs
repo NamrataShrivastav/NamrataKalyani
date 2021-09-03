@@ -4,28 +4,44 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace NamrataKalyani.Models
 {
     public class PatientInfoModel
     {
-        
-        public int pid { get; set; }
-        [DisplayName("Doctor ID")]
-        public int docid { get; set; }
+        public enum Gender
+        {
+            Male,
+            Female
+        }
+        public int? pid { get; set; }
+       
+        public int? docid { get; set; }
+       
+        public SelectList DoctorList { get; set; }
+
+        [DisplayName("Doctor Name")]
+        public string Doc_Name { get; set; }
+        public string SelectedDoctor { get; set; }
+
+
         [DisplayName("Sr No.")]
-        public int srno { get; set; }
+        public int? srno { get; set; }
         [DisplayName("Date")]
-        public DateTime date { get; set; }
+        public DateTime? date { get; set; }
         [DisplayName("Patient Name")]
         public string pname { get; set; }
         [DisplayName("Age")]
-        public int age { get; set; }
+        public int? age { get; set; }
         [DisplayName("Ref. By Doctor")]
         public string RefByDoc { get; set; }
         [DisplayName("Gender")]
-        public Nullable<bool> gender { get; set; }
-        //public string emailid { get; set; }
-        //public string password { get; set; }
+        public string gender { get; set; }
+        public string mobileNo { get; set; }
+        public string Name_Mobile { get; set; }
     }
+
+   
 }
