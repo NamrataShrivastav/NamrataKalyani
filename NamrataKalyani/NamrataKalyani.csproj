@@ -162,7 +162,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Design\fancyTable.min.js" />
     <Content Include="Content\Forms.css" />
-    <Content Include="Database\04Sep2021.sql" />
+    <Content Include="Database\06-09-2021_Diognastic.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
