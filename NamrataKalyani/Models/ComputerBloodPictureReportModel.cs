@@ -19,7 +19,7 @@ namespace NamrataKalyani.Models
         public string Name { get; set; }
         public string Pname { get; set; }
         [DisplayName("Doctor Name")]
-        public string Doc_Name { get; set; }
+        public string DoctorName { get; set; }
         public int Srno { get; set; }
         public int Age { get; set; }
         public string Gender { get; set; }
@@ -28,7 +28,7 @@ namespace NamrataKalyani.Models
         public string Qualification { get; set; }
         [DisplayName("Signature")]
         public string signature { get; set; }
-        public string descriptions { get; set; }
+        public string description { get; set; }
         [DisplayName("Branch Location")]
         public string branchLocation { get; set; }
         [DisplayName("Full Address")]
@@ -58,6 +58,8 @@ namespace NamrataKalyani.Models
         public string methodology { get; set; }
         [DisplayName("Basophils")]
         public string basophils { get; set; }
+        public int? CreatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
 
     }
 }

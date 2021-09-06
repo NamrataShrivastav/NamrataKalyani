@@ -1,62 +1,59 @@
-﻿@model NamrataKalyani.Models.DashboardModel
+﻿@model NamrataKalyani.Models.ReportModel
 
-<script>
-    function ChangeReportType() {
-         
-        window.location = "http://localhost:54429/Doc/ComputerBloodPictureReport";
+    <script>
+        function ChangeReportType() {
 
-             //window.location.href = '@Url.Action("ComputerBloodPictureReport", "Doc")';
+            if ($('#ReportType').val() == 1) {
+                window.location = "http://localhost:54429/Doc/ClinicalBiochemistoryReportLIPIDProfile";
+            }
+            else if ($('#ReportType').val() == 2) {
+                window.location = "http://localhost:54429/Doc/ClinicalBiochemistoryReportLTF";
 
-        //if (SelectListItem =="BloodPictureReport") {
-        //    window.location = "http://localhost:54429/Doc/ComputerBloodPictureReport";
-        //} else if (SelectListItem =="BiochemistoryReportLIPID") {
-        //    window.location = "http://localhost:54429/Doc/ClinicalBiochemistoryReportLIPIDProfile";
-        //} else {
-        //    window.location = "http://localhost:54429/Doc/ClinicalBiochemistoryReportLTF";
-        //}
-    }
-</script>
+            }
+            else if ($('#ReportType').val() == 3) {
+                window.location = "http://localhost:54429/Doc/ComputerBloodPictureReport";
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+            }
+            else {
+                return null;
+            }
+        }
+    </script>
 
-    <form class="form-control">
-        <div class="form-group">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-            <hr />
-
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-          
+        <form class="form-control">
             <div class="form-group">
-                @Html.LabelFor(model => model.ReportType, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.ValidationMessageFor(model => model.ReportType, "", new { @class = "text-danger" })
-                    @Html.DropDownList("ReportType", new List<SelectListItem>
-                   ()
-               {
-                   new SelectListItem{Text="BiochemistoryReportLIPID"},
-                   new SelectListItem{Text="BiochemistoryReportLTF"},
-                   new SelectListItem{Text="BloodPictureReport" },
-               }, htmlAttributes: new { @class = "control-label col-md-4" })
 
+                <hr />
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ReportType, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.ValidationMessageFor(model => model.ReportType, "", new { @class = "text-danger" })
+                        @Html.DropDownList("ReportType", null, "Select Report", htmlAttributes: new { @class = "control-label col-md-4" })
+
+                    </div>
+                </div>
+
+
+                <div class="btn-group-justified">
+                    <div class="col-md-offset-2 col-md-4">
+                        <input type="button" value="Create Test" class="btn btn-default" onclick="ChangeReportType();" />
+                    </div>
                 </div>
             </div>
+        </form>
+    }
 
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 
-            <div class="btn-group-justified">
-                <div class="col-md-offset-2 col-md-4">
-                    <input type="button" value="Create Test" class="btn btn-default" onclick="ChangeReportType();" />
-                </div>
-            </div>
-        </div>
-    </form>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

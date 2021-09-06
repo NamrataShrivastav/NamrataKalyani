@@ -5,7 +5,7 @@
 }
 
 
-<h2 style="align-content" class=" body-content">Patient Information</h2>
+<h2 style="align-content:center" class="body-content">Patient Information</h2>
 
 
 @using (Html.BeginForm()) 
@@ -25,25 +25,9 @@
             </div>*@
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Doc_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DoctorName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.DropDownListFor(model => model.docid, Model.DoctorList, "Select Doctor")
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.srno, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.srno, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.srno, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -63,13 +47,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.RefByDoc, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">
                 @Html.EditorFor(model => model.RefByDoc, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.RefByDoc, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
         <div class="form-group">
             @Html.LabelFor(model => model.mobileNo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">

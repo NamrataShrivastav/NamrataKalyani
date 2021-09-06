@@ -9,8 +9,8 @@ namespace NamrataKalyani.Models
 {
     public class LoginModel
     {
-        // public int lid { get; set; }
-        //  public string name { get; set; }
+        public int id { get; set; }
+        public string Name { get; set; }
         [DisplayName("Email")]
         public string email { get; set; }
         [DisplayName("Password")]

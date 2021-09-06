@@ -31,12 +31,12 @@
                 </td>
                 <td>
                     @Html.Label(Model.Specilization, new { style = "color:red !important" })<br />
-                    @Html.Label(Model.Doc_Name, new { style = "color:cadetblue !important" })  <br />
+                    @Html.Label(Model.DoctorName, new { style = "color:cadetblue !important" })  <br />
                     @Html.Label(Model.Qualification, new { style = "color:cadetblue !important" })  <br />
                 </td>
                 <td>
                     @Html.Label(Model.Specilization, new { style = "color:red !important" })<br />
-                    @Html.Label(Model.Doc_Name, new { style = "color:cadetblue !important" })  <br />
+                    @Html.Label(Model.DoctorName, new { style = "color:cadetblue !important" })  <br />
                     @Html.Label(Model.Qualification, new { style = "color:cadetblue !important" })  <br />
 
                 </td>
@@ -260,8 +260,7 @@
 
             <tr>
                 <td width="40%" align="center">
-                    <label style="color: Black; font-weight: normal; font-size: smaller; "><b><u>Methodology </u> :-</b> Electronic Cell Counter & <br />  Microscopy.</label>
-
+                    <label style="color: Black; font-weight: normal; font-size: smaller; "><b><u>Methodology </u> :-</b> Electronic Cell Counter & Microscopy.</label>
                 </td>
                 <td width="40%">
                     <label style="color: Black; font-weight: normal; font-size: smaller; "></label>
@@ -276,10 +275,10 @@
 
                 </td>
                 <td width="40%">
-                    <label style="color: Black; font-weight: normal; ">@Model.signature</label>
+                    <label style="color: Black; font-weight: normal; ">(Signature)</label>
                 </td>
                 <td align="left" width="20%">
-                    <label style="color: Black; font-weight: normal; font-size: smaller;">@Model.Doc_Name</label><br />
+                    <label style="color: Black; font-weight: normal; font-size: smaller;">@Model.DoctorName</label><br />
                     <label style="color: Black; font-weight: normal; font-size: smaller;">@Model.Qualification</label><br />
                     <label style="color: Black; font-weight: normal; font-size: smaller;">@Model.Specilization</label>
                 </td>

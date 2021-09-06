@@ -18,7 +18,7 @@ namespace NamrataKalyani.Models
         public string Name { get; set; }
         public string Pname { get; set; }
         [DisplayName("Doctor Name")]
-        public string Doc_Name { get; set; }
+        public string DoctorName { get; set; }
         public int Srno { get; set; }
         public int Age { get; set; }
         public string Gender { get; set; }
@@ -32,9 +32,7 @@ namespace NamrataKalyani.Models
         public string branchLocation { get; set; }
         [DisplayName("Full Address")]
         public string fullAddress { get; set; }
-
-
-
+        
         [DisplayName("Serum Cholestrol T")]
         public string serumCholestrol { get; set; }
 
@@ -58,6 +56,8 @@ namespace NamrataKalyani.Models
 
         [DisplayName("Total Lipid")]
         public string titalLipid { get; set; }
-       
+        public int? CreatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
+
     }
 }

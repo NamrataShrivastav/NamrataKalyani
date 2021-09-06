@@ -31,40 +31,38 @@
                 <td>
                     <img src="~/Akbar.png" width="200" height="90">
                 </td>
-
-
                 <td>
                     @Html.Label(Model.Specilization, new { style = "color:red !important" })<br />
-                    @Html.Label(Model.Doc_Name, new { style = "color:cadetblue !important" })  <br />
+                    @Html.Label(Model.DoctorName, new { style = "color:cadetblue !important" })  <br />
                     @Html.Label(Model.Qualification, new { style = "color:cadetblue !important" })  <br />
 
                 </td>
 
                 <td>
                     @Html.Label(Model.Specilization, new { style = "color:red !important" })<br />
-                    @Html.Label(Model.Doc_Name, new { style = "color:cadetblue !important" })  <br />
+                    @Html.Label(Model.DoctorName, new { style = "color:cadetblue !important" })  <br />
                     @Html.Label(Model.Qualification, new { style = "color:cadetblue !important" })  <br />
 
                 </td>
             </tr>
         </table>
         <h2></h2>
-        <table style="border-collapse: collapse; border-spacing: 0 15px; border: double" width="90%" align="center" cellspacing=1 cellpadding=1>
+        <table style="border-collapse: collapse; border-spacing: 0 15px; border: solid" width="80%" align="center" cellspacing=1 cellpadding=1>
             <tr style="border: double; border-width: 1px 0;">
                 <td>
                     @Html.Label("Sr No :- ", new { style = "color:Black; text-decoration:underline; " })
                     @Html.Label(Model.Srno.ToString(), new { style = "color:Black; font-weight: normal;" })
                 </td>
                 <td>
-                    @Html.Label("Date:-", new { style = "color:Black ; text-decoration:underline;" })
+                    @Html.Label("Date:-", new { style = "color:Black;text-decoration:underline;" })
                     @DateTime.Now
                 </td>
             </tr>
-            <tr style="border: double; border-width: 1px 0;">
+            @*<tr style="border: double; border-width: 1px 0;">
                 <td><h2></h2></td>
                 <td>
                 </td>
-            </tr>
+            </tr>*@
             <tr style="border: double; border-width: 1px 0;">
                 <td>
                     @Html.Label("Pt. Name :- ", new { style = "color:Black ; text-decoration:underline;" })
@@ -75,11 +73,11 @@
                     @Html.Label(Model.Age.ToString(), new { style = "color:Black; font-weight: normal;" })
                 </td>
             </tr>
-            <tr style="border: double; border-width: 1px 0;">
+            @*<tr style="border: double; border-width: 1px 0;">
                 <td><h2></h2></td>
                 <td>
                 </td>
-            </tr>
+            </tr>*@
             <tr style="border:double; border-width: 1px 0;">
                 <td>
                     @Html.Label("Ref. By DR :-", new { style = "color:Black ; text-decoration:underline; " })
@@ -95,13 +93,18 @@
         <table width="100%" height="10%">
             <tr>
                 <td align="center">
-                    @Html.Label("CLINICAL BIO CHEMISTORY REPORT LIPID PROFILE ", new { style = "color:Black; text-decoration:underline; " })
+                    @Html.Label("CLINICAL BIO CHEMISTORY REPORT", new { style = "color:Black; text-decoration:underline; " })
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    @Html.Label("LIPID PROFILE", new { style = "color:Black; text-decoration:underline; " })
                 </td>
             </tr>
         </table>
         <hr style="position: relative; border: none; top: 1px; height: 2px; background: black !important; margin-top: 1px; " />
 
-        <table width="100%" style="margin-left:15%;">
+        <table width="100%" style="margin-left:7%;">
             <tr>
                 <td>
                     @Html.Label("PARAMETERS ", new { style = "color:Black; text-decoration:underline; " })
@@ -110,10 +113,9 @@
                     @Html.Label("RESULT ", new { style = "color:Black; text-decoration:underline; " })
                 </td>
                 <td>
-                    @Html.Label("REFERENCE RANGES ", new { style = "color:Black; text-decoration:underline; " })
+                    @Html.Label("NORMAL RANGES", new { style = "color:Black; text-decoration:underline; " })
                 </td>
             </tr>
-
 
             <tr>
 
@@ -129,6 +131,7 @@
             </tr>
             <tr>
                 <td>
+                    @Html.Label("(Methodology:CHOD-PAP)", new { style = "color:Black; font-weight: normal; font-size:smaller;" })
                 </td>
                 <td>
                 </td>
@@ -136,7 +139,7 @@
                     <label style="color: Black; font-weight: normal; font-size: smaller;">Boderline high risk : 200-239 mg/dl</label>
                 </td>
             </tr>
-
+            <tr></tr>
             <tr>
                 <td>
                     @Html.Label("H D L Cholestrol", new { style = "color:Black; font-weight: normal; font-size:smaller;" })
@@ -150,6 +153,7 @@
             </tr>
             <tr>
                 <td>
+                    @Html.Label("(Methodology:PEG-CHOD-PAF END POINT)", new { style = "color:Black; font-weight: normal; font-size:smaller;" })
                 </td>
                 <td>
                 </td>
@@ -163,7 +167,7 @@
                     <label style="color:Black; font-weight: normal; font-size:smaller;">L D L Cholestrol</label>
                 </td>
                 <td>
-                    <label style="color:Black; font-weight: normal; font-size:smaller;">@Model.LDLCholestrol /cumms</label>
+                    <label style="color:Black; font-weight: normal; font-size:smaller;">@Model.LDLCholestrol mg/dl</label>
                 </td>
                 <td>
                     <label style="color: Black; font-weight: normal; font-size: smaller;">Upto 150 mg/dl </label>
@@ -221,7 +225,7 @@
                     @Html.Label("Tital Lipid", new { style = "color:Black; font-weight: normal; font-size:smaller;" })
                 </td>
                 <td>
-                    <label style="color:Black; font-weight: normal; font-size:smaller;">@Model.titalLipid </label>
+                    <label style="color:Black; font-weight: normal; font-size:smaller;">@Model.titalLipid mg/dl</label>
                 </td>
                 <td>
                     <label style="color: Black; font-weight: normal; font-size: smaller;">400-1000 mg/dl </label>
@@ -232,9 +236,9 @@
         </table>
         <table width="100%">
 
-            <tr>
+            @*<tr>
                 <td width="40%" align="center">
-                    <label style="color: Black; font-weight: normal; font-size: smaller; "><b><u>Methodology</u> :-</b> Electronic Cell Counter & <br />  Microscopy.</label>
+                    <label style="color: Black; font-weight: normal; font-size: smaller; "><b><u>Methodology</u> :-</b> Electronic Cell Counter &  Microscopy.</label>
 
                 </td>
                 <td width="40%">
@@ -243,17 +247,18 @@
 
                 <td align="left" width="20%"></td>
 
-            </tr>
+            </tr>*@
             <tr>
                 <td width="40%" align="center">
-                    <label style="color: Black; font-weight: normal; "></label>
+                    <label style="color: Black; font-weight: normal;"></label>
 
                 </td>
                 <td width="40%">
-                    <label style="color: Black; font-weight: normal; ">@Model.signature</label>
+                    @*<label style="color: Black; font-weight: normal; ">@Model.signature</label><br />*@
+                    <label style="color: Black; font-weight: normal; ">(Signature)</label>
                 </td>
                 <td align="left" width="20%">
-                    <label style="color: Black; font-weight: normal; font-size: smaller;">@Model.Doc_Name</label><br />
+                    <label style="color: Black; font-weight: normal; font-size: smaller;">@Model.DoctorName</label><br />
                     <label style="color: Black; font-weight: normal; font-size: smaller;">@Model.Qualification</label><br />
                     <label style="color: Black; font-weight: normal; font-size: smaller;">@Model.Specilization</label>
                 </td>
@@ -285,3 +290,6 @@
         </div>
     </div>
 </div>
+@*<div style="text-align:center">
+    @Html.ActionLink("Print", "Print_CBPReport1", new { Pid = Model.pid, ReportTypeId = Request.QueryString["ReportTypeId"], ReportId = Request.QueryString["ReportId"] },new {@class="btn btn-success"})
+</div>*@

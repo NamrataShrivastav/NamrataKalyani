@@ -18,5 +18,9 @@ namespace NamrataKalyani.Models
         public string password { get; set; }
         [DisplayName("Confirm Password")]
         public string confirmPassword { get; set; }
+        [DisplayName("Center")]
+        public int CenterId { get; set; }
+        public bool status { get; set; }
+       
     }
 }

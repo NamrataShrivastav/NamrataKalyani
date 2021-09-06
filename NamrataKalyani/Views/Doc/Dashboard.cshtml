@@ -82,11 +82,11 @@
                     @item.mobileNo
                 </td>
                 <td>
-                    @item.date
+                    @item.CreatedOn
                 </td>
 
                 <td>
-                    @Html.ActionLink("View Reports", "GetAllReportsByPatientId", new { id = item.pid }) |
+                    <a href="~/Doc/GetAllReportsByPatientId?Pid=@item.pid">View Reports</a>  
                 </td>
             </tr>
         }

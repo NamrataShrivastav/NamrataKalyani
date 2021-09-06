@@ -135,13 +135,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DocController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CenterModel.cs" />
     <Compile Include="Models\ClinicalBiochemistoryReportLIPIDProfileModel.cs" />
     <Compile Include="Models\ClinicalBiochemistoryReportLTFModel.cs" />
     <Compile Include="Models\ComputerBloodPictureReportModel.cs" />
-    <Compile Include="Models\DashboardModel.cs" />
+    <Compile Include="Models\ReportByPidModel.cs" />
+    <Compile Include="Models\ReportModel.cs" />
     <Compile Include="Models\Dignostic.cs" />
     <Compile Include="Models\DoctorInfoModel.cs" />
     <Compile Include="Models\GetAllReportsByPatientIdModel.cs" />
@@ -212,9 +215,13 @@
     <Content Include="Views\Doc\Dashboard.cshtml" />
     <Content Include="Views\Doc\PatientReport.cshtml" />
     <Content Include="Views\Doc\GetAllReportsByPatientId.cshtml" />
+    <Content Include="Views\Doc\UpdateCBPReportByPatientId.cshtml" />
+    <Content Include="Views\Doc\UpdateLIPIDProfileReportByPatientId.cshtml" />
+    <Content Include="Views\Doc\UpdateLTFReportByPatientId.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Reports\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

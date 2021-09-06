@@ -18,7 +18,7 @@ namespace NamrataKalyani.Models
         public string Name { get; set; }
         public string Pname { get; set; }
         [DisplayName("Doctor Name")]
-        public string Doc_Name { get; set; }
+        public string DoctorName { get; set; }
         public int Srno { get; set; }
         public int Age { get; set; }
         public string Gender { get; set; }
@@ -62,6 +62,8 @@ namespace NamrataKalyani.Models
 
         [DisplayName("Serum Alkaline Phosphatse")]
         public string serumAlkalinePhosphatse { get; set; }
-      
+        public int? CreatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
+
     }
 }

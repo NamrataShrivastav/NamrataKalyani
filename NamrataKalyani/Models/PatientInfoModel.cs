@@ -23,14 +23,9 @@ namespace NamrataKalyani.Models
         public SelectList DoctorList { get; set; }
 
         [DisplayName("Doctor Name")]
-        public string Doc_Name { get; set; }
+        public string DoctorName { get; set; }
         public string SelectedDoctor { get; set; }
 
-
-        [DisplayName("Sr No.")]
-        public int? srno { get; set; }
-        [DisplayName("Date")]
-        public DateTime? date { get; set; }
         [DisplayName("Patient Name")]
         public string pname { get; set; }
         [DisplayName("Age")]
@@ -41,7 +36,17 @@ namespace NamrataKalyani.Models
         public string gender { get; set; }
         public string mobileNo { get; set; }
         public string Name_Mobile { get; set; }
+
+        [DisplayName("Created Date")]
+        public DateTime? CreatedOn { get; set; }
+
+        [DisplayName("Updated Date")]
+        public DateTime? UpdatedOn { get; set; }
+
+        public int? CreatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
+
     }
 
-   
+
 }
