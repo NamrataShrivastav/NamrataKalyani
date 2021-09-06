@@ -34,6 +34,7 @@ namespace NamrataKalyani.Models
         public string RefByDoc { get; set; }
         [DisplayName("Gender")]
         public string gender { get; set; }
+        [DisplayName("Mobile No.")]
         public string mobileNo { get; set; }
         public string Name_Mobile { get; set; }
 

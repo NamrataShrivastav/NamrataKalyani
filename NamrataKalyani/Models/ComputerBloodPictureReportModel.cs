@@ -36,9 +36,9 @@ namespace NamrataKalyani.Models
  
         [DisplayName("Haemoglobin")]
         public string haemoglobin { get; set; }
-        [DisplayName("ErythrocyteCount")]
+        [DisplayName("Erythrocyte Count")]
         public string erythrocyteCount { get; set; }
-        [DisplayName("TotalWBCCount")]
+        [DisplayName("Total WBC Count")]
         public string totalWBCCount { get; set; }
         [DisplayName("Neutrophils")]
         public string neutrophils { get; set; }
@@ -50,9 +50,9 @@ namespace NamrataKalyani.Models
         public string monocytes { get; set; }
         [DisplayName("Bcs")]
         public string bcs { get; set; }
-        [DisplayName("bcs")]
+        [DisplayName("RBCs")]
         public string rbcs { get; set; }
-        [DisplayName("PlateletCount")]
+        [DisplayName("Platelet Count")]
         public string plateletCount { get; set; }
         [DisplayName("Methodology")]
         public string methodology { get; set; }

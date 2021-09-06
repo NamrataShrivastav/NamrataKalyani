@@ -18,6 +18,7 @@ namespace NamrataKalyani.Controllers
 
     public class DocController : Controller
     {
+        //string hostname = "akbardiagnostic.dswebcare.com";
         // GET: Doc
         public ActionResult Index()
         {
@@ -365,7 +366,7 @@ namespace NamrataKalyani.Controllers
             {
                 ConversionOptions options = new ConversionOptions(ceTe.DynamicPDF.HtmlConverter.PageSize.A4, ceTe.DynamicPDF.HtmlConverter.PageOrientation.Portrait, 0.2f);
                // Converter.Convert(new Uri(@"http://localhost:54429/Doc/Print_LIPIDProfileReport?Pid=27&ReportTypeId=1&ReportId=7"), @"D:\WithConversionOptions.pdf", options);
-                Converter.Convert(new Uri(@"http://localhost:54429/Doc/Print_LIPIDProfileReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), @"D:\WithConversionOptions.pdf", options);
+                Converter.Convert(new Uri(@"akbardiagnostic.dswebcare.com/Doc/Print_LIPIDProfileReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), @"E:\WithConversionOptions.pdf", options);
 
                 //Converter.Convert(new Uri("https://en.wikipedia.org"), "E:\\SimpleConversion.pdf");
                 //ceTe.DynamicPDF.Printing.PrintJob printJob = new PrintJob("Samsung SCX-3400 Series", "D:\\WithConversionOptions.pdf");
@@ -380,12 +381,13 @@ namespace NamrataKalyani.Controllers
         }
        public ActionResult Print_LTF(ReportByPidModel rept)
         {
+            
             try
             {
                 ConversionOptions options = new ConversionOptions(ceTe.DynamicPDF.HtmlConverter.PageSize.A4, ceTe.DynamicPDF.HtmlConverter.PageOrientation.Portrait, 0.2f);
                 //Converter.Convert(new Uri(@"http://localhost:54429/Doc/Print_LTFReport?Pid=27&ReportTypeId=1&ReportId=7"), @"D:\WithConversionOptions.pdf", options);
 
-                Converter.Convert(new Uri(@"http://localhost:54429/Doc/Print_LTFReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), @"D:\WithConversionOptions.pdf", options);
+                Converter.Convert(new Uri(@"akbardiagnostic.dswebcare.com/Doc/Print_LTFReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), @"E:\WithConversionOptions.pdf", options);
 
                 //Converter.Convert(new Uri("https://en.wikipedia.org"), "E:\\SimpleConversion.pdf");
                 //ceTe.DynamicPDF.Printing.PrintJob printJob = new PrintJob("Samsung SCX-3400 Series", "D:\\WithConversionOptions.pdf");
@@ -404,7 +406,7 @@ namespace NamrataKalyani.Controllers
             try
             {
                 ConversionOptions options = new ConversionOptions(ceTe.DynamicPDF.HtmlConverter.PageSize.A4, ceTe.DynamicPDF.HtmlConverter.PageOrientation.Portrait, 0.2f);
-                Converter.Convert(new Uri(@"http://localhost:54429/Doc/Print_CBPReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), @"D:\WithConversionOptions.pdf", options);
+                Converter.Convert(new Uri(@"akbardiagnostic.dswebcare.com/Doc/Print_CBPReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), @"E:\WithConversionOptions.pdf", options);
                 //Converter.Convert(new Uri("https://en.wikipedia.org"), "E:\\SimpleConversion.pdf");
                 //ceTe.DynamicPDF.Printing.PrintJob printJob = new PrintJob("Samsung SCX-3400 Series", "D:\\WithConversionOptions.pdf");
                 //printJob.Print();

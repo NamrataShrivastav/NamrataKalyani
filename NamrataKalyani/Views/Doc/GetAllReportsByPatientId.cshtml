@@ -8,16 +8,17 @@
 <script>
     function ChangeReportType() {
         let urlParams = @Request.QueryString["Pid"];
-        alert(urlParams);
+        //alert(urlParams);
+        var hostname = "akbardiagnostic.dswebcare.com";
         if ($('#ReportType').val() == 1) {
-            window.location = "http://localhost:54429/Doc/ClinicalBiochemistoryReportLIPIDProfile?pid="+urlParams;
+            window.location = hostname + "/Doc/ClinicalBiochemistoryReportLIPIDProfile?pid="+urlParams;
         }
         else if ($('#ReportType').val() == 2) {
-            window.location = "http://localhost:54429/Doc/ClinicalBiochemistoryReportLTF?pid="+urlParams;
+            window.location = hostname + "/Doc/ClinicalBiochemistoryReportLTF?pid="+urlParams;
 
         }
         else if ($('#ReportType').val() == 3) {
-            window.location = "http://localhost:54429/Doc/ComputerBloodPictureReport?pid="+urlParams;
+            window.location = hostname + "/Doc/ComputerBloodPictureReport?pid="+urlParams;
 
         }
         else {
@@ -29,19 +30,19 @@
 <h2>Create Reports</h2>
 
 <div class="form-group">
-    @Html.Label("ReportType", htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.Label("Report Type", htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.DropDownList("ReportType", null, "Select Report", htmlAttributes: new { @class = "control-label col-md-4" })
+        @Html.DropDownList("ReportType", null, "Select Report", htmlAttributes: new { @class = "control-label col-md-4 btn btn-default dropdown-toggle" })
     </div>
 </div>
-
-
+<br/>
+<br/>
 <div class="btn-group-justified">
     <div class="col-md-offset-2 col-md-4">
-        <input type="button" value="Create Test" class="btn btn-primary" onclick="ChangeReportType();" />
+        <input type="button" value="Create Test" class="btn btn-success" onclick="ChangeReportType();" />
     </div>
 </div>
-
+<br />
 <table class="table">
     <tr>
         <th>
