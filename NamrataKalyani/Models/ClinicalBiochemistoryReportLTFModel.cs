@@ -42,7 +42,7 @@ namespace NamrataKalyani.Models
         [DisplayName("Serum Bilirubin ID")]
         public string serumBilirubinID { get; set; }
 
-        [DisplayName("Serum Asparate Amino Transferase SGOT")]
+        [DisplayName("Asparate Amino SGOT")]
         public string serumAsparateAminoTransferase { get; set; }
 
         [DisplayName("Serum Alanine Amino Transferase SGPT")]

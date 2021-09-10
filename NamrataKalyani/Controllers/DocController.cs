@@ -18,6 +18,7 @@ namespace NamrataKalyani.Controllers
 
     public class DocController : Controller
     {
+        //string hostname = "akbardiagnostic.dswebcare.com";
         // GET: Doc
         public ActionResult Index()
         {
