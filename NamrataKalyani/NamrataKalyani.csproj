@@ -163,12 +163,16 @@
     <Content Include="Content\Design\fancyTable.min.js" />
     <Content Include="Content\Forms.css" />
     <Content Include="Database\06-09-2021_Diognastic.sql" />
+    <Content Include="Database\10-09-2021_script_Diognastic.sql" />
+    <Content Include="Document\Example.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Document\Diognasis Project Task Detail.xlsx" />
+    <None Include="Properties\PublishProfiles\AkberPublish.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -221,6 +225,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Upload\" />
     <Folder Include="Views\Reports\" />
   </ItemGroup>
   <ItemGroup>

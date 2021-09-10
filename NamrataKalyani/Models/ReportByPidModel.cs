@@ -10,5 +10,7 @@ namespace NamrataKalyani.Models
         public int Pid { get; set; }
         public int ReportTypeId { get; set; }
         public int ReportId { get; set; }
+        public string Printer_Name { get; set; }
+
     }
 }

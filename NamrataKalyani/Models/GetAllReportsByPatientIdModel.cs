@@ -6,7 +6,7 @@ using System.Web;
 namespace NamrataKalyani.Models
 {
     public class GetAllReportsByPatientIdModel
-    {       
+    {
         public int Pid { get; set; }
         public string Name { get; set; }
         public int ReportTypeId { get; set; }
@@ -14,6 +14,8 @@ namespace NamrataKalyani.Models
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
         public int CreatedBy { get; set; }
-        public int UpdatedBy { get; set; }   
+        public int UpdatedBy { get; set; }
+        public string Printer_Name { get; set; }
+
     }
 }
