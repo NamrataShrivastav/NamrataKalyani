@@ -9,7 +9,9 @@
     function ChangeReportType() {
         let urlParams = @Request.QueryString["Pid"];
         //alert(urlParams);
-        var hostname = "akbardiagnostic.dswebcare.com";
+       // var hostname = "akbardiagnostic.dswebcare.com";
+        var hostname = "http://localhost:54429";
+        
         if ($('#ReportType').val() == 1) {
             window.location = hostname + "/Doc/ClinicalBiochemistoryReportLIPIDProfile?pid="+urlParams;
         }

@@ -84,38 +84,49 @@ namespace NamrataKalyani.Controllers
 
         public ActionResult PatientInfo()
         {
+            var Reports = RetuningData.ReturnigList<ReportModel>("sp_getReports", null);
+            ViewBag.ReportType = new SelectList(Reports, "Id", "ReportType");
             PatientInfoModel Doc = new PatientInfoModel();
 
             var dlist = RetuningData.ReturnigList<PatientInfoModel>("uspGetDoctotList", null);
-            Doc.DoctorList = new SelectList(dlist, "docid", "DoctorName");
-            return View(Doc);
+            ViewBag.DoctorList = new SelectList(dlist, "docid", "DoctorName");
+
+            var Billing = RetuningData.ReturnigList<ReportModel>("sp_getReports", null);
+            ViewBag.ReportType = new SelectList(Reports, "Id", "ReportType");
+
+            return View();
         }
 
         [HttpPost]
         public ActionResult PatientInfo(PatientInfoModel pm)
         {
             var param = new DynamicParameters();
-            
             param.Add("@Pname", pm.pname);
             param.Add("@Age", pm.age);
             param.Add("@Gender", pm.gender);
-            param.Add("@docid", pm.docid);
-            param.Add("@mobileNo", pm.mobileNo);
+            param.Add("@RefDocId", pm.DoctorList);
+            param.Add("@mobileNo", pm.Name_Mobile);
             param.Add("@CreatedBy", 1);
             param.Add("@UpdatedBy", 1);
-           
 
-            string mobileno = RetuningData.ReturnSingleValue<string>("AddNewPatientInfoDetails", param);
-            if (mobileno != null && mobileno != "")
-            {
-                return RedirectToAction("Dashboard", "Doc");
-                
-            }
-            else
-            {
-                return View();
-            }
 
+            int Pid = RetuningData.ReturnSingleValue<int>("AddNewPatientInfoDetails", param);
+            var param1 = new DynamicParameters();
+
+            param1.Add("@CreatedBy", 1);
+            param1.Add("@UpdatedBy", 1);
+            param1.Add("@Amount", 0);
+            param1.Add("@Discount", 0);
+            param1.Add("@Expenses", 0);
+            param1.Add("@ReferalAmount", 0);
+            string[] str = pm.RptId.Split(',');
+            foreach (var item in str)
+            {
+                param1.Add("@Pid", Pid);
+                param1.Add("@ReportId", item);
+                RetuningData.ReturnSingleValue<string>("AddBillingTransaction", param1);
+            }
+            return RedirectToAction("Dashboard", "Doc");
         }
         public ActionResult PatientReport()
         {
@@ -202,7 +213,7 @@ namespace NamrataKalyani.Controllers
             int i = RetuningData.AddOrSave<int>("AddNewClinicalBiochemistoryReportLIPIDProfileDetails", param);
             if (i > 0)
             {
-                return RedirectToAction("GetAllReportsByPatientId", new {Pid= lipid.pid });
+                return RedirectToAction("GetAllReportsByPatientId", new {Pid=lipid.pid });
             }
             else
             {
@@ -490,5 +501,38 @@ namespace NamrataKalyani.Controllers
             return View(pat);
         }
 
+        [HttpPost]
+        public ActionResult PatientInfo1(PatientInfoOldModel pt)
+        {
+            var param = new DynamicParameters();
+            param.Add("@Name_Mobile", pt.mobileNo);
+            var i = RetuningData.ReturnigList<PatientInfoModel>("uspGetDashborad", param).SingleOrDefault();
+            if (i != null)
+            {
+                var Reports = RetuningData.ReturnigList<ReportModel>("sp_getReports", null).ToList();
+                ViewBag.ReportType = new SelectList(Reports, "Id", "ReportType");
+                var dlist = RetuningData.ReturnigList<PatientInfoModel>("uspGetDoctotList", null);
+                ViewBag.DoctorList = new SelectList(dlist, "docid", "DoctorName");
+                return View("PatientInfo", i);
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+
+        [HttpPost]
+        public ActionResult AddDoctors(DoctorInfoModel doc)
+        {
+            //var param = new DynamicParameters();
+            //param.Add("@DocName", doc.Doc_Name);
+            //param.Add("@CreatedBy", 1);
+            //param.Add("@UpdatedBy", 1);
+                        
+            //NamrataKalyani.Models.DoctorInfoModel doc = RetuningData.ReturnigList<DoctorInfoModel>("GetClinicalBiochemistoryReportLTFDetail", param).SingleOrDefault();
+             
+            return View(doc);
+        }
     }
 }

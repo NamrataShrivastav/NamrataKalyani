@@ -16,6 +16,10 @@ namespace NamrataKalyani.Models
         public DateTime date { get; set; }
         [DisplayName("Name")]
         public string Name { get; set; }
+        [DisplayName("Designation")]
+        public string Designation { get; set; }
+        [DisplayName("Qualification")]
+        public string Qualification { get; set; }
         public string Pname { get; set; }
         [DisplayName("Doctor Name")]
         public string DoctorName { get; set; }
@@ -24,7 +28,6 @@ namespace NamrataKalyani.Models
         public string Gender { get; set; }
         public string RefByDoc { get; set; }
         public string Specilization { get; set; }
-        public string Qualification { get; set; }
         [DisplayName("Signature")]
         public string signature { get; set; }
         public string descriptions { get; set; }

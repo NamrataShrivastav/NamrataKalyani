@@ -94,9 +94,28 @@
                     @Html.EditorFor(model => model.titalLipid, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.titalLipid, "", new { @class = "text-danger" })
                 </div>
-                
             </div>
-            
+            <div class="form-group">
+                @Html.LabelFor(model => model.DoctorName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4" style="margin-bottom:2px">
+                    @Html.EditorFor(model => model.DoctorName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DoctorName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Designation, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4" style="margin-bottom:2px">
+                    @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Qualification, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4" style="margin-bottom:2px">
+                    @Html.EditorFor(model => model.Qualification, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Qualification, "", new { @class = "text-danger" })
+                </div>
+            </div>
             <br/>
             <br/>
             <div class="form-group">                

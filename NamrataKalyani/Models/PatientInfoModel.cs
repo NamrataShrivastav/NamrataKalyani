@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
+using NamrataKalyani.Models;
 
 namespace NamrataKalyani.Models
 {
@@ -16,11 +17,13 @@ namespace NamrataKalyani.Models
             Male,
             Female
         }
+
+
         public int? pid { get; set; }
-       
+
         public int? docid { get; set; }
-       
-        public SelectList DoctorList { get; set; }
+
+        //public SelectList DoctorList { get; set; }
 
         [DisplayName("Doctor Name")]
         public string DoctorName { get; set; }
@@ -47,7 +50,21 @@ namespace NamrataKalyani.Models
         public int? CreatedBy { get; set; }
         public int? UpdatedBy { get; set; }
 
+        public int ReportTypeId { get; set; }
+        public int ReportId { get; set; }
+
+        public int ID { get; set; }
+
+        public string Name { get; set; }
+
+        public string RptId { get; set; }
+
+        public string DoctorList { get; set; }
     }
 
-
+    public class PatientInfoOldModel
+    {
+        public string mobileNo { get; set; }
+    }
 }
+

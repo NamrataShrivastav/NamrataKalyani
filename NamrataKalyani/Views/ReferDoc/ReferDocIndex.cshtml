@@ -1,0 +1,83 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<NamrataKalyani.Models.ReferalDoctorModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Referral Doctor List </title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "CreateRecord")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ReferalDoctorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Mobile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().UpdatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().UpdatedOn)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReferalDoctorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mobile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedOn)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditRecord", new { id = item.Id }, new { @class = "btn btn-primary" })|
+
+                    @Html.ActionLink("Delete", "DeleteRecord", new { id = item.Id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
+@Html.PagedListPager(Model, page => Url.Action("ReferDocIndex", new { page }))
+

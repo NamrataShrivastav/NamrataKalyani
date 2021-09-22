@@ -59,6 +59,14 @@
       <HintPath>..\packages\ceTe.DynamicPDF.Printing.NET.4.19.0\lib\net40\DynamicPDF.Printing.NETFramework40.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -133,8 +141,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\DocController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReferalDoctorController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -143,6 +153,7 @@
     <Compile Include="Models\ClinicalBiochemistoryReportLIPIDProfileModel.cs" />
     <Compile Include="Models\ClinicalBiochemistoryReportLTFModel.cs" />
     <Compile Include="Models\ComputerBloodPictureReportModel.cs" />
+    <Compile Include="Models\ReferalDoctorModel.cs" />
     <Compile Include="Models\ReportByPidModel.cs" />
     <Compile Include="Models\ReportModel.cs" />
     <Compile Include="Models\Dignostic.cs" />
@@ -152,16 +163,19 @@
     <Compile Include="Models\PatientInfoModel.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\RetuningData.cs" />
+    <Compile Include="Models\_BilIingInfoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Akbar.png" />
+    <Content Include="Content\bootstrap-multiselect.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Design\fancyTable.min.js" />
     <Content Include="Content\Forms.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Database\06-09-2021_Diognastic.sql" />
     <Content Include="Database\10-09-2021_script_Diognastic.sql" />
     <Content Include="Document\Example.png" />
@@ -169,11 +183,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap-multiselect.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Document\Diognasis Project Task Detail.xlsx" />
     <None Include="Properties\PublishProfiles\AkberPublish.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -222,11 +238,23 @@
     <Content Include="Views\Doc\UpdateCBPReportByPatientId.cshtml" />
     <Content Include="Views\Doc\UpdateLIPIDProfileReportByPatientId.cshtml" />
     <Content Include="Views\Doc\UpdateLTFReportByPatientId.cshtml" />
+    <Content Include="Views\Reports\Create.cshtml" />
+    <Content Include="Views\Reports\Edit.cshtml" />
+    <Content Include="Views\Reports\Delete.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\ReferDoc\CreateRecord.cshtml" />
+    <Content Include="Views\ReferDoc\DeleteRecord.cshtml" />
+    <Content Include="Views\ReferDoc\EditRecord.cshtml" />
+    <Content Include="Views\ReferDoc\ReferDocIndex.cshtml" />
+    <Content Include="Views\Shared\PatientInfoExistingUser.cshtml" />
+    <Content Include="Views\Billing\GetBillingInfo.cshtml" />
+    <Content Include="Views\Shared\_CreateBill.cshtml" />
+    <Content Include="Views\Billing\UpdateBillingInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Upload\" />
-    <Folder Include="Views\Reports\" />
+    <Folder Include="Views\ReferalDoctor\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
