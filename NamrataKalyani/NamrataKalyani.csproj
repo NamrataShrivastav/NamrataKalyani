@@ -225,6 +225,8 @@
     <Content Include="Document\PARTIAL THROMBOPLATIN TIME.doc" />
     <Content Include="Document\PLT COUNT.doc" />
     <Content Include="Document\Pt.doc" />
+    <Content Include="Document\SERUM_ADA.doc" />
+    <Content Include="Document\SERUM_AMYLASE.doc" />
     <None Include="Properties\PublishProfiles\AkberPublish.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />

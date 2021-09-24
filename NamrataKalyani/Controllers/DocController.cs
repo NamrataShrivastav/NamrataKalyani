@@ -115,10 +115,7 @@ namespace NamrataKalyani.Controllers
 
             param1.Add("@CreatedBy", 1);
             param1.Add("@UpdatedBy", 1);
-            param1.Add("@Amount", 0);
-            param1.Add("@Discount", 0);
-            param1.Add("@Expenses", 0);
-            param1.Add("@ReferalAmount", 0);
+             
             string[] str = pm.RptId.Split(',');
             foreach (var item in str)
             {
