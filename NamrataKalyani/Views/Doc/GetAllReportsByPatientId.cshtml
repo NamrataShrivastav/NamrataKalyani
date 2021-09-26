@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script>
+@*<script>
     function ChangeReportType() {
         let urlParams = @Request.QueryString["Pid"];
         //alert(urlParams);
@@ -27,16 +27,16 @@
             return null;
         }
     }
-</script>
+</script>*@
 
 <h2>Create Reports</h2>
 
-<div class="form-group">
+@*<div class="form-group">
     @Html.Label("Report Type", htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
         @Html.DropDownList("ReportType", null, "Select Report", htmlAttributes: new { @class = "control-label col-md-4 btn btn-default dropdown-toggle" })
     </div>
-</div>
+</div>*@
 <br/>
 <br/>
 <div class="btn-group-justified">
@@ -85,9 +85,11 @@
                 @Html.DisplayFor(modelItem => item.UpdatedOn)
             </td>
             <td>
-                @Html.ActionLink("Print View", "ShowReport", new { Pid = item.Pid, ReportTypeId = item.ReportTypeId, ReportId = item.ReportId }, new { @class = "btn btn-success" }) 
+                @Html.ActionLink("Print View", "ShowReport", new { Pid = item.Pid, BillId = item.BillId, ReportId = item.ReportId }, new { @class = "btn btn-success" }) 
                 @Html.ActionLink("Delete", "DeleteReport", new { Pid = item.Pid, ReportTypeId = item.ReportTypeId, ReportId = item.ReportId }, new { @class = "btn btn-danger" })
-                @if (item.ReportTypeId == 1)
+               @Html.ActionLink("Edit", "EditPrintReport", new { Pid = item.Pid, BillId = item.BillId, ReportId = item.ReportId }, new { @class = "btn btn-warning" })
+
+                 @*@if (item.ReportTypeId == 1)
                 {
                     @Html.ActionLink("Edit", "UpdateLIPIDProfileReportByPatientId", new { Pid = item.Pid, ReportTypeId = item.ReportTypeId, ReportId = item.ReportId }, new { @class = "btn btn-warning" })
                     @Html.ActionLink("Print", "Print_LPIDReport", new { Pid = item.Pid, ReportTypeId = item.ReportTypeId, ReportId = item.ReportId ,Printer_Name = item.Printer_Name }, new { @class = "btn btn-primary" })
@@ -102,7 +104,7 @@
                 {
                     @Html.ActionLink("Edit", "UpdateCBPReportByPatientId", new { Pid = item.Pid, ReportTypeId = item.ReportTypeId, ReportId = item.ReportId }, new { @class = "btn btn-warning" })
                     @Html.ActionLink("Print", "Print_CBPReport1", new { Pid = item.Pid, ReportTypeId = item.ReportTypeId, ReportId = item.ReportId,Printer_Name = item.Printer_Name}, new { @class = "btn btn-primary" })
-                }
+                }*@
 
             </td>
         </tr>

@@ -11,6 +11,7 @@ namespace NamrataKalyani.Models
         public string Name { get; set; }
         public int ReportTypeId { get; set; }
         public int ReportId { get; set; }
+        public int BillId { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
         public int CreatedBy { get; set; }

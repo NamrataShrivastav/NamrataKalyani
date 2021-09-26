@@ -175,7 +175,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Design\fancyTable.min.js" />
     <Content Include="Content\Forms.css" />
+    <Content Include="Content\Images\PrintIcon.png" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Print.css" />
+    <Content Include="Content\prism.css" />
     <Content Include="Database\06-09-2021_Diognastic.sql" />
     <Content Include="Database\10-09-2021_script_Diognastic.sql" />
     <Content Include="Database\22092021Diagnostic.sql" />
@@ -290,6 +293,7 @@
     <Content Include="Views\Billing\GetBillingInfo.cshtml" />
     <Content Include="Views\Shared\_CreateBill.cshtml" />
     <Content Include="Views\Billing\UpdateBillingInfo.cshtml" />
+    <Content Include="Views\Doc\EditPrintReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -24,7 +24,7 @@ namespace NamrataKalyani.Controllers
         {
             var Reports = RetuningData.ReturnigList<ReportModel>("sp_getReports", null);
 
-            ViewBag.ReportType = new SelectList(Reports,"Id", "ReportType");
+            ViewBag.ReportType = new SelectList(Reports, "Id", "ReportType");
             return View();
         }
         public ActionResult DoctorInfo()
@@ -46,7 +46,7 @@ namespace NamrataKalyani.Controllers
             param.Add("@Passward", reg.password);
             param.Add("@Status", reg.status);
             param.Add("@CenterId", 1);
-           
+
             int i = RetuningData.AddOrSave<int>("usp_getUserLogin", param);
             if (i > 0)
             {
@@ -115,7 +115,7 @@ namespace NamrataKalyani.Controllers
 
             param1.Add("@CreatedBy", 1);
             param1.Add("@UpdatedBy", 1);
-             
+
             string[] str = pm.RptId.Split(',');
             foreach (var item in str)
             {
@@ -177,7 +177,7 @@ namespace NamrataKalyani.Controllers
             var br = RetuningData.ReturnigList<ComputerBloodPictureReportModel>("GetComputerBloodPictureReportDetails", null);
             return View(br);
         }
-       
+
         public ActionResult Print_CBPReport(ReportByPidModel rpt)
         {
             var param = new DynamicParameters();
@@ -194,7 +194,7 @@ namespace NamrataKalyani.Controllers
         public ActionResult ClinicalBiochemistoryReportLIPIDProfile(ClinicalBiochemistoryReportLIPIDProfileModel lipid)
         {
             var param = new DynamicParameters();
-           
+
             param.Add("@Pid", lipid.pid);
             param.Add("@serumCholestrol", lipid.serumCholestrol);
             param.Add("@hdlCholestrol", lipid.hdlCholestrol);
@@ -206,11 +206,11 @@ namespace NamrataKalyani.Controllers
             param.Add("@titalLipid", lipid.titalLipid);
             param.Add("@CreatedBy", lipid.titalLipid);
             param.Add("@UpdatedBy", lipid.titalLipid);
-             
+
             int i = RetuningData.AddOrSave<int>("AddNewClinicalBiochemistoryReportLIPIDProfileDetails", param);
             if (i > 0)
             {
-                return RedirectToAction("GetAllReportsByPatientId", new {Pid=lipid.pid });
+                return RedirectToAction("GetAllReportsByPatientId", new { Pid = lipid.pid });
             }
             else
             {
@@ -222,20 +222,9 @@ namespace NamrataKalyani.Controllers
             var rlipid = RetuningData.ReturnigList<ClinicalBiochemistoryReportLTFModel>("GetClinicalBiochemistoryReportLIPIDProfileDetails", null);
             return View(rlipid);
         }
-        public ActionResult Print_LIPIDProfileReport(ReportByPidModel rpt)
-        {
-            var param = new DynamicParameters();
-            param.Add("@Pid", rpt.Pid);
-            param.Add("@ReportId", rpt.ReportId); 
+        public ActionResult Print_LIPIDProfileReport(ReportByPidModel rpt)        {            var param = new DynamicParameters();            param.Add("@Pid", rpt.Pid);            param.Add("@ReportId", rpt.ReportId);
+            param.Add("@BillId", rpt.BillId);            ReportByPidModel pat = RetuningData.ReturnigList<ReportByPidModel>("usp_PrintReport", param).SingleOrDefault();            if (rpt.Pid != null)            {                pat.Srno = (int)rpt.Pid;            }            return View(pat);        }
 
-
-            NamrataKalyani.Models.ClinicalBiochemistoryReportLIPIDProfileModel pat = RetuningData.ReturnigList<ClinicalBiochemistoryReportLIPIDProfileModel>("GetClinicalBiochemistoryReportLIPIDProfileDetails", param).SingleOrDefault();
-            if (rpt.Pid != null)
-            {
-                pat.Srno = (int)rpt.Pid;
-            }
-            return View(pat);
-        }
         public ActionResult ClinicalBiochemistoryReportLTF()
         {
             return View();
@@ -255,12 +244,12 @@ namespace NamrataKalyani.Controllers
             param.Add("@serumGlubulin", ltf.serumGlubulin);
             param.Add("@AGRation", ltf.AGRation);
             param.Add("@serumAlkalinePhosphatse", ltf.serumAlkalinePhosphatse);
-            param.Add("@CreatedBy",1);
-            param.Add("@UpdatedBy",1);
+            param.Add("@CreatedBy", 1);
+            param.Add("@UpdatedBy", 1);
             int i = RetuningData.AddOrSave<int>("AddNewClinicalBiochemistoryReportLTFDetails", param);
             if (i > 0)
             {
-                return RedirectToAction("GetAllReportsByPatientId", new { Pid = ltf .pid });
+                return RedirectToAction("GetAllReportsByPatientId", new { Pid = ltf.pid });
             }
             else
             {
@@ -300,7 +289,7 @@ namespace NamrataKalyani.Controllers
             var i = RetuningData.ReturnigList<PatientInfoModel>("uspGetDashborad", param);
             if (i != null)
             {
-                 
+
                 //param.Add("@Name_Mobile", i.Pname);
                 //FormsAuthentication.SetAuthCookie(param.UserName, false);
                 return View(i);
@@ -311,7 +300,7 @@ namespace NamrataKalyani.Controllers
             }
 
         }
-           
+
         [HttpPost]
         public ActionResult Index(PatientInfoModel dm)
         {
@@ -335,51 +324,44 @@ namespace NamrataKalyani.Controllers
             }
 
         }
-        public ActionResult GetAllReportsByPatientId()
-        {
-            var Reports = RetuningData.ReturnigList<ReportModel>("sp_getReports", null);
-            ViewBag.ReportType = new SelectList(Reports, "Id", "ReportType");
-            int Pid = Convert.ToInt32(Request.QueryString["Pid"]);
-            var param = new DynamicParameters();
-            param.Add("@Pid", Pid);
-            var rltf = RetuningData.ReturnigList<GetAllReportsByPatientIdModel>("usp_getAllReportsByPatientId", param);
-            return View(rltf);
-        }
+        public ActionResult GetAllReportsByPatientId(int? id)        {            var Reports = RetuningData.ReturnigList<ReportModel>("sp_getReports", null);            ViewBag.ReportType = new SelectList(Reports, "Id", "ReportType");            int? Pid = id;            if (id == null)            {
+                Pid = Convert.ToInt32(Request.QueryString["Pid"]);            }            var param = new DynamicParameters();            param.Add("@Pid", Pid);            var rltf = RetuningData.ReturnigList<GetAllReportsByPatientIdModel>("usp_getAllReportsByPatientId", param);            return View(rltf);        }
+
         public ActionResult ShowReport(ReportByPidModel rpt)
         {
             ReportByPidModel obj = new ReportByPidModel();
 
             obj.Pid = rpt.Pid;
-            obj.ReportTypeId = Convert.ToInt32(Request.QueryString["ReportTypeId"]);
+            obj.BillId = Convert.ToInt32(Request.QueryString["BillId"]);
             obj.ReportId = Convert.ToInt32(Request.QueryString["ReportId"]);
 
-            if (obj.ReportTypeId == 1)
-            {
+            //if (obj.ReportTypeId == 1)
+            //{
                 return RedirectToAction("Print_LIPIDProfileReport", obj);
-            }
-            else if (obj.ReportTypeId == 2)
-            {
-                return RedirectToAction("Print_LTFReport", obj);
-            }
-            else if (obj.ReportTypeId ==3)
-            {
-                return RedirectToAction("Print_CBPReport", obj);
-            }
-            return View();
+            //}
+            //else if (obj.ReportTypeId == 2)
+            //{
+            //    return RedirectToAction("Print_LTFReport", obj);
+            //}
+            //else if (obj.ReportTypeId == 3)
+            //{
+            //    return RedirectToAction("Print_CBPReport", obj);
+            //}
+             
         }
 
         public ActionResult Print_LPIDReport(ReportByPidModel rept)
         {
             try
             {
-                ConversionOptions options = new ConversionOptions(ceTe.DynamicPDF.HtmlConverter.PageSize.A4, ceTe.DynamicPDF.HtmlConverter.PageOrientation.Portrait, 0.2f);
-                // Converter.Convert(new Uri("https://localhost:44319/Doc/Print_LIPIDProfileReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), @"D:\WithConversionOptions.pdf", options);
-                string path = Server.MapPath("~/Upload");
-                Converter.Convert(new Uri(@"http://akbardiagnostic.dswebcare.com/Doc/Print_LIPIDProfileReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), path + @"\WithConversionOptions.pdf", options);
+            //    ConversionOptions options = new ConversionOptions(ceTe.DynamicPDF.HtmlConverter.PageSize.A4, ceTe.DynamicPDF.HtmlConverter.PageOrientation.Portrait, 0.2f);
+            //    // Converter.Convert(new Uri("https://localhost:44319/Doc/Print_LIPIDProfileReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), @"D:\WithConversionOptions.pdf", options);
+            //    string path = Server.MapPath("~/Upload");
+            //    Converter.Convert(new Uri(@"http://akbardiagnostic.dswebcare.com/Doc/Print_LIPIDProfileReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), path + @"\WithConversionOptions.pdf", options);
 
-                //Converter.Convert(new Uri("https://en.wikipedia.org"), "E:\\SimpleConversion.pdf");
-                ceTe.DynamicPDF.Printing.PrintJob printJob = new PrintJob(rept.Printer_Name.ToString(), path + @"\WithConversionOptions.pdf");
-                printJob.Print();
+            //    //Converter.Convert(new Uri("https://en.wikipedia.org"), "E:\\SimpleConversion.pdf");
+            //    ceTe.DynamicPDF.Printing.PrintJob printJob = new PrintJob(rept.Printer_Name.ToString(), path + @"\WithConversionOptions.pdf");
+            //    printJob.Print();
                 return Content("PDF Generated");
             }
             catch (Exception ex)
@@ -401,8 +383,8 @@ namespace NamrataKalyani.Controllers
                 Converter.Convert(new Uri(@"akbardiagnostic.dswebcare.com/Doc/Print_LTFReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), path + @"\WithConversionOptions.pdf", options);
 
                 //Converter.Convert(new Uri("https://en.wikipedia.org"), "E:\\SimpleConversion.pdf");
-                ceTe.DynamicPDF.Printing.PrintJob printJob = new PrintJob(rept.Printer_Name.ToString(), path + @"\WithConversionOptions.pdf");
-                printJob.Print();
+               // ceTe.DynamicPDF.Printing.PrintJob printJob = new PrintJob(rept.Printer_Name.ToString(), path + @"\WithConversionOptions.pdf");
+                //printJob.Print();
                 return Content("PDF Generated");
             }
             catch (Exception ex)
@@ -416,14 +398,14 @@ namespace NamrataKalyani.Controllers
         {
             try
             {
-                ConversionOptions options = new ConversionOptions(ceTe.DynamicPDF.HtmlConverter.PageSize.A4, ceTe.DynamicPDF.HtmlConverter.PageOrientation.Portrait, 0.2f);
-                //Converter.Convert(new Uri("https://localhost:44319/Doc/Print_LTFReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), @"D:\WithConversionOptions.pdf", options);
-                string path = Server.MapPath("~/Upload");
+                //ConversionOptions options = new ConversionOptions(ceTe.DynamicPDF.HtmlConverter.PageSize.A4, ceTe.DynamicPDF.HtmlConverter.PageOrientation.Portrait, 0.2f);
+                ////Converter.Convert(new Uri("https://localhost:44319/Doc/Print_LTFReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), @"D:\WithConversionOptions.pdf", options);
+                //string path = Server.MapPath("~/Upload");
 
-                Converter.Convert(new Uri(@"akbardiagnostic.dswebcare.com/Doc/Print_CBPReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), path + @"\WithConversionOptions.pdf", options);
-                //Converter.Convert(new Uri("https://en.wikipedia.org"), "E:\\SimpleConversion.pdf");
-                ceTe.DynamicPDF.Printing.PrintJob printJob = new PrintJob(rept.Printer_Name.ToString(), path + @"\WithConversionOptions.pdf");
-                printJob.Print();
+                //Converter.Convert(new Uri(@"akbardiagnostic.dswebcare.com/Doc/Print_CBPReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), path + @"\WithConversionOptions.pdf", options);
+                ////Converter.Convert(new Uri("https://en.wikipedia.org"), "E:\\SimpleConversion.pdf");
+                //ceTe.DynamicPDF.Printing.PrintJob printJob = new PrintJob(rept.Printer_Name.ToString(), path + @"\WithConversionOptions.pdf");
+                //printJob.Print();
                 return Content("PDF Generated");
             }
             catch (Exception ex)
@@ -480,7 +462,7 @@ namespace NamrataKalyani.Controllers
             {
                 return View();
             }
-            
+
         }
 
         [HttpGet]
@@ -526,10 +508,17 @@ namespace NamrataKalyani.Controllers
             //param.Add("@DocName", doc.Doc_Name);
             //param.Add("@CreatedBy", 1);
             //param.Add("@UpdatedBy", 1);
-                        
+
             //NamrataKalyani.Models.DoctorInfoModel doc = RetuningData.ReturnigList<DoctorInfoModel>("GetClinicalBiochemistoryReportLTFDetail", param).SingleOrDefault();
-             
+
             return View(doc);
         }
+
+
+        public ActionResult EditPrintReport(int? id)        {            ReportByPidModel obj = new ReportByPidModel();            obj.Pid = Convert.ToInt32(Request.QueryString["Pid"]);            obj.ReportId = Convert.ToInt32(Request.QueryString["ReportId"]);            obj.BillId = Convert.ToInt32(Request.QueryString["BillId"]);            var param = new DynamicParameters();            param.Add("@Pid", obj.Pid);            param.Add("@ReportId", obj.ReportId);            param.Add("@BillId", obj.BillId);            NamrataKalyani.Models.ReportByPidModel pat = RetuningData.ReturnigList<ReportByPidModel>("usp_PrintReport", param).SingleOrDefault();            if (obj.Pid != null)            {                pat.Srno = (int)obj.Pid;            }            return View(pat);        }        [HttpPost]        public ActionResult EditPrintReport(ReportByPidModel obj)        {
+            var param = new DynamicParameters();
+            param.Add("@BillID", obj.BillId);            param.Add("@RptID", obj.ReportId);
+            param.Add("@Description", obj.Description);            param.Add("@UpdatedBy", obj.Pid);            int pat = RetuningData.AddOrSave<int>("usp_UpdatePrintReportById", param);
+            return RedirectToAction("GetAllReportsByPatientId", new { id = obj.Pid });        }
     }
 }
