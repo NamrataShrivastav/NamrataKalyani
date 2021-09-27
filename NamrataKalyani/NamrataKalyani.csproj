@@ -285,20 +285,20 @@
     <Content Include="Views\Reports\Edit.cshtml" />
     <Content Include="Views\Reports\Delete.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
-    <Content Include="Views\ReferDoc\CreateRecord.cshtml" />
-    <Content Include="Views\ReferDoc\DeleteRecord.cshtml" />
-    <Content Include="Views\ReferDoc\EditRecord.cshtml" />
-    <Content Include="Views\ReferDoc\ReferDocIndex.cshtml" />
+    <Content Include="Views\ReferalDoctor\CreateRecord.cshtml" />
+    <Content Include="Views\ReferalDoctor\DeleteRecord.cshtml" />
+    <Content Include="Views\ReferalDoctor\EditRecord.cshtml" />
+    <Content Include="Views\ReferalDoctor\ReferDocIndex.cshtml" />
     <Content Include="Views\Shared\PatientInfoExistingUser.cshtml" />
     <Content Include="Views\Billing\GetBillingInfo.cshtml" />
     <Content Include="Views\Shared\_CreateBill.cshtml" />
     <Content Include="Views\Billing\UpdateBillingInfo.cshtml" />
     <Content Include="Views\Doc\EditPrintReport.cshtml" />
+    <Content Include="Views\Shared\_MyLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Upload\" />
-    <Folder Include="Views\ReferalDoctor\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

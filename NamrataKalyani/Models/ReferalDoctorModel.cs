@@ -7,9 +7,9 @@ namespace NamrataKalyani.Models
 {
     public class ReferalDoctorModel
     {
-        public int Id { get; set; }
+        public int DocId { get; set; }
 
-        public string ReferalDoctorName { get; set; }
+        public string  DoctorName { get; set; }
 
         public string Mobile { get; set; }
 

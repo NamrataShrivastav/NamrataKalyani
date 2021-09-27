@@ -3,32 +3,24 @@
 @using PagedList.Mvc;
 @model IPagedList<NamrataKalyani.Models.ReferalDoctorModel>
 
-@{
+@*@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+}*@
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Referral Doctor List </title>
-</head>
-<body>
     <p>
         @Html.ActionLink("Create New", "CreateRecord")
     </p>
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.First().ReferalDoctorName)
+                @Html.DisplayNameFor(model => model.First().DoctorName)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.First().Mobile)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.First().Email)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.First().CreatedBy)
             </th>
@@ -48,14 +40,14 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ReferalDoctorName)
+                    @Html.DisplayFor(modelItem => item.DoctorName)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Mobile)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedBy)
                 </td>
@@ -69,15 +61,14 @@
                     @Html.DisplayFor(modelItem => item.UpdatedOn)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "EditRecord", new { id = item.Id }, new { @class = "btn btn-primary" })|
+                    @Html.ActionLink("Edit", "EditRecord", new { id = item.DocId }, new { @class = "btn btn-primary" })|
 
-                    @Html.ActionLink("Delete", "DeleteRecord", new { id = item.Id }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Delete", "DeleteRecord", new { id = item.DocId }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }
 
     </table>
-</body>
-</html>
+ 
 @Html.PagedListPager(Model, page => Url.Action("ReferDocIndex", new { page }))
 

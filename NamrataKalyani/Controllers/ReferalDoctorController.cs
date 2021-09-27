@@ -33,15 +33,12 @@ namespace NamrataKalyani.Controllers
         public ActionResult CreateRecord(ReferalDoctorModel rdm)
         {
             var param = new DynamicParameters();
-            param.Add("@DName", rdm.ReferalDoctorName);
-            param.Add("@Email", rdm.Email);
-            param.Add("@Mobile", rdm.Mobile);
+    
+            param.Add("@DoctorName", rdm.DoctorName);
             param.Add("@CreatedBy", 1);
-            param.Add("@CreatedOn", DateTime.Now);
             param.Add("@UpdatedBy", 1);
-            param.Add("@UpdatedOn", DateTime.Now);
 
-            int i = RetuningData.AddOrSave<int>("usp_SaveReferDoc", param);
+            int i = RetuningData.AddOrSave<int>("uspAddDoctor", param);
             if (i > 0)
             {
 
@@ -64,10 +61,10 @@ namespace NamrataKalyani.Controllers
         public ActionResult EditRecord(ReferalDoctorModel rdm)
         {
             var param = new DynamicParameters();
-            param.Add("@Rid", rdm.Id);
-            param.Add("@Dname", rdm.ReferalDoctorName);
-            param.Add("@Email", rdm.Email);
-            param.Add("@Mobile", rdm.Mobile);
+            param.Add("@DocId", rdm.DocId);
+            param.Add("@DoctorName", rdm.DoctorName);
+            //param.Add("@Email", rdm.Email);
+            //param.Add("@Mobile", rdm.Mobile);
 
             //param.Add("@UpdatedBy", 1);
             param.Add("@UpdatedOn", DateTime.Now);
@@ -97,7 +94,7 @@ namespace NamrataKalyani.Controllers
 
             var param = new DynamicParameters();
 
-            param.Add("@Rid", rdm.Id);
+            param.Add("@Rid", rdm.DocId);
             var num = RetuningData.ReturnigList<ReferalDoctorModel>("DeleteReferalDocById", param).SingleOrDefault();
 
 
