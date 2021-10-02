@@ -49,6 +49,7 @@ namespace NamrataKalyani.Controllers
                 param.Add("@Due", Bill.Due);
                 param.Add("@ReferalAmount", Bill.ReferalAmount);
                 param.Add("@Status", Bill.Status);
+                param.Add("@ReferalPercentage", Bill.ReferalPercentage);
                 param.Add("@UpdatedBy", 1);
                 result= RetuningData.AddOrSave<int>("usp_UpdateBilling", param);
           

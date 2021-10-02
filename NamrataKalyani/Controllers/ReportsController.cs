@@ -31,13 +31,12 @@ namespace NamrataKalyani.Controllers
         {
             var param = new DynamicParameters();
             param.Add("@RName", rem.ReportType);
-            // param.Add("@Price",rem.Price);
+            param.Add("@Description", rem.Description);
+            param.Add("@ShortName", rem.ShortName);
             param.Add("@CreatedBy", 1);
-            param.Add("@CreatedOn", DateTime.Now);
             param.Add("@UpdatedBy", 1);
-            param.Add("@UpdatedOn", DateTime.Now);
 
-            int i = RetuningData.AddOrSave<int>("usp_saveReportData", param);
+            int i = RetuningData.AddOrSave<int>("sp_SaveReport", param);
             if (i > 0)
             {
 

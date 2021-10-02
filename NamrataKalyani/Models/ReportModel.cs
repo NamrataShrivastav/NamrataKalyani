@@ -14,6 +14,7 @@ namespace NamrataKalyani.Models
         public string ReportId { get; set; }
         [AllowHtml]
         public string Description { get; set; }
+        public string ShortName { get; set; }
         
         public int CreatedBy { get; set; }
         public int UpdatedBy { get; set; }
