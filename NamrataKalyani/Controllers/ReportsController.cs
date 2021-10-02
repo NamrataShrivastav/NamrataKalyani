@@ -9,9 +9,12 @@ using System.Data;
 using System.Data.SqlClient;
 using PagedList;
 using PagedList.Mvc;
+using NamrataKalyani.CustomAttribute;
 
 namespace NamrataKalyani.Controllers
 {
+    [Authorize]
+    [SessionTimeoutAttribute]
     public class ReportsController : Controller
     {
         // GET: Reports

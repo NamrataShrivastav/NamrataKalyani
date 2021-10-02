@@ -65,9 +65,8 @@ namespace NamrataKalyani.Controllers
             param.Add("@DoctorName", rdm.DoctorName);
             //param.Add("@Email", rdm.Email);
             //param.Add("@Mobile", rdm.Mobile);
-
-            //param.Add("@UpdatedBy", 1);
-            param.Add("@UpdatedOn", DateTime.Now);
+             param.Add("@UpdatedBy", 1);
+          
 
             int i = RetuningData.AddOrSave<int>("sp_UpdateReferDoctorById", param);
 

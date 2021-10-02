@@ -144,8 +144,10 @@
     <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\DocController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ReferalDoctorController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="CustomAttribute\SessionTimeoutAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,6 +181,7 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Print.css" />
     <Content Include="Content\prism.css" />
+    <Content Include="Database\02-Oct-Script.sql" />
     <Content Include="Database\06-09-2021_Diognastic.sql" />
     <Content Include="Database\10-09-2021_script_Diognastic.sql" />
     <Content Include="Database\22092021Diagnostic.sql" />
@@ -300,6 +303,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Upload\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

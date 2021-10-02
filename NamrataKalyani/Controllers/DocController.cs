@@ -1,24 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Data;
-using System.Data.SqlClient;
 using Dapper;
 using NamrataKalyani.Models;
-using System.Web.Security;
-using ceTe.DynamicPDF;
 using ceTe.DynamicPDF.HtmlConverter;
-using ceTe.DynamicPDF.Printing;
-using System.Web.Hosting;
+using NamrataKalyani.CustomAttribute;
 
 namespace NamrataKalyani.Controllers
 {
-
+    [Authorize]
+    [SessionTimeoutAttribute]
     public class DocController : Controller
     {
         //string hostname = "akbardiagnostic.dswebcare.com";
+
+        int UserId=1;
+        public DocController()
+        {
+            if (System.Web.HttpContext.Current.Session["UserId"] != null)
+            {
+                UserId = Convert.ToInt32(System.Web.HttpContext.Current.Session["UserId"]);
+            }
+        }
         // GET: Doc
         public ActionResult Index()
         {
@@ -57,30 +61,6 @@ namespace NamrataKalyani.Controllers
                 return View();
             }
         }
-        public ActionResult Login()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Login(LoginModel login)
-        {
-            var param = new DynamicParameters();
-            param.Add("@Email", login.email);
-            param.Add("@Passward", login.Passward);
-
-            LoginModel _login = RetuningData.ReturnigList<LoginModel>("sp_getLogin", param).SingleOrDefault();
-            if (_login != null)
-            {
-                //FormsAuthentication.SetAuthCookie(param.UserName, false);
-                Session["UserId"] = _login.id;
-                return RedirectToAction("Dashboard");
-
-            }
-            else
-            {
-                return View();
-            }
-        }
 
         public ActionResult PatientInfo()
         {
@@ -106,15 +86,15 @@ namespace NamrataKalyani.Controllers
             param.Add("@Gender", pm.gender);
             param.Add("@RefDocId", pm.DoctorList);
             param.Add("@mobileNo", pm.Name_Mobile);
-            param.Add("@CreatedBy", 1);
+            param.Add("@CreatedBy", UserId);
             param.Add("@UpdatedBy", 1);
 
 
             int Pid = RetuningData.ReturnSingleValue<int>("AddNewPatientInfoDetails", param);
             var param1 = new DynamicParameters();
 
-            param1.Add("@CreatedBy", 1);
-            param1.Add("@UpdatedBy", 1);
+            param1.Add("@CreatedBy", UserId);
+            param1.Add("@UpdatedBy", UserId);
 
             string[] str = pm.RptId.Split(',');
             foreach (var item in str)
@@ -337,7 +317,7 @@ namespace NamrataKalyani.Controllers
 
             //if (obj.ReportTypeId == 1)
             //{
-                return RedirectToAction("Print_LIPIDProfileReport", obj);
+            return RedirectToAction("Print_LIPIDProfileReport", obj);
             //}
             //else if (obj.ReportTypeId == 2)
             //{
@@ -347,21 +327,21 @@ namespace NamrataKalyani.Controllers
             //{
             //    return RedirectToAction("Print_CBPReport", obj);
             //}
-             
+
         }
 
         public ActionResult Print_LPIDReport(ReportByPidModel rept)
         {
             try
             {
-            //    ConversionOptions options = new ConversionOptions(ceTe.DynamicPDF.HtmlConverter.PageSize.A4, ceTe.DynamicPDF.HtmlConverter.PageOrientation.Portrait, 0.2f);
-            //    // Converter.Convert(new Uri("https://localhost:44319/Doc/Print_LIPIDProfileReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), @"D:\WithConversionOptions.pdf", options);
-            //    string path = Server.MapPath("~/Upload");
-            //    Converter.Convert(new Uri(@"http://akbardiagnostic.dswebcare.com/Doc/Print_LIPIDProfileReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), path + @"\WithConversionOptions.pdf", options);
+                //    ConversionOptions options = new ConversionOptions(ceTe.DynamicPDF.HtmlConverter.PageSize.A4, ceTe.DynamicPDF.HtmlConverter.PageOrientation.Portrait, 0.2f);
+                //    // Converter.Convert(new Uri("https://localhost:44319/Doc/Print_LIPIDProfileReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), @"D:\WithConversionOptions.pdf", options);
+                //    string path = Server.MapPath("~/Upload");
+                //    Converter.Convert(new Uri(@"http://akbardiagnostic.dswebcare.com/Doc/Print_LIPIDProfileReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), path + @"\WithConversionOptions.pdf", options);
 
-            //    //Converter.Convert(new Uri("https://en.wikipedia.org"), "E:\\SimpleConversion.pdf");
-            //    ceTe.DynamicPDF.Printing.PrintJob printJob = new PrintJob(rept.Printer_Name.ToString(), path + @"\WithConversionOptions.pdf");
-            //    printJob.Print();
+                //    //Converter.Convert(new Uri("https://en.wikipedia.org"), "E:\\SimpleConversion.pdf");
+                //    ceTe.DynamicPDF.Printing.PrintJob printJob = new PrintJob(rept.Printer_Name.ToString(), path + @"\WithConversionOptions.pdf");
+                //    printJob.Print();
                 return Content("PDF Generated");
             }
             catch (Exception ex)
@@ -383,7 +363,7 @@ namespace NamrataKalyani.Controllers
                 Converter.Convert(new Uri(@"akbardiagnostic.dswebcare.com/Doc/Print_LTFReport?Pid=" + rept.Pid + "&ReportTypeId=" + rept.ReportTypeId + "&ReportId=" + rept.ReportId + ""), path + @"\WithConversionOptions.pdf", options);
 
                 //Converter.Convert(new Uri("https://en.wikipedia.org"), "E:\\SimpleConversion.pdf");
-               // ceTe.DynamicPDF.Printing.PrintJob printJob = new PrintJob(rept.Printer_Name.ToString(), path + @"\WithConversionOptions.pdf");
+                // ceTe.DynamicPDF.Printing.PrintJob printJob = new PrintJob(rept.Printer_Name.ToString(), path + @"\WithConversionOptions.pdf");
                 //printJob.Print();
                 return Content("PDF Generated");
             }

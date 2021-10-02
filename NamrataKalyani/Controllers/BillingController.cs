@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using NamrataKalyani.CustomAttribute;
 using NamrataKalyani.Models;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ using System.Web.Mvc;
 
 namespace NamrataKalyani.Controllers
 {
+    [Authorize]
+    [SessionTimeoutAttribute]
     public class BillingController : Controller
     {
         // GET: Billing
