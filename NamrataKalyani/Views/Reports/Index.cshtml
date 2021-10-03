@@ -4,28 +4,22 @@
 
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create Report", "Create")
-    </p>
+ 
+ 
+ <div style="text-align:right;">
+    @Html.ActionLink("Create Report", "Create",null,new {@class="btn btn-primary" })
+</div>
     <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.First().ReportType)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.First().Price)
-                </th>*@
+            <th>
+                    @Html.DisplayNameFor(model => model.First().ShortName)
+                </th>
             <th>
                 @Html.DisplayNameFor(model => model.First().CreatedBy)
             </th>
@@ -47,32 +41,31 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ReportType)
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>*@
+               <td>
+                    @Html.DisplayFor(modelItem => item.ShortName)
+                </td> 
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                    @Html.DisplayFor(modelItem => item.UpdatedName)
                 </td>
                 @*<td>
                     @Html.DisplayFor(modelItem => item.CreatedOn)
                 </td>*@
                 <td>
-                    @Html.DisplayFor(modelItem => item.UpdatedBy)
+                    @Html.DisplayFor(modelItem => item.UpdatedName)
                 </td>
                 @*<td>
                     @Html.DisplayFor(modelItem => item.UpdatedOn)
                 </td>*@
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })|
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
 
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })*@
                 </td>
             </tr>
         }
 
     </table>
 
-</body>
-</html>
+ 
 
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

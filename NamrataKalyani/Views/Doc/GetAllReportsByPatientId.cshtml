@@ -43,6 +43,7 @@
         <input type="button" value="Create Test" class="btn btn-success" onclick="ChangeReportType();" />
     </div>
 </div>*@
+ 
  <div class="container-fluid">
     <table class="table">
         <tr>
@@ -50,13 +51,13 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreatedBy)
+                @Html.DisplayNameFor(model => model.CreatedName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedOn)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UpdatedBy)
+                @Html.DisplayNameFor(model => model.UpdatedName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.UpdatedOn)
@@ -69,24 +70,26 @@
             <tr>
 
                 <td>
+                    <input type="hidden" id="BillId" value="@item.BillId" />
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                    @Html.DisplayFor(modelItem => item.CreatedName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedOn)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UpdatedBy)
+                    @Html.DisplayFor(modelItem => item.UpdatedName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.UpdatedOn)
                 </td>
                 <td>
                     @Html.ActionLink("Print View", "ShowReport", new { Pid = item.Pid, BillId = item.BillId, ReportId = item.ReportId }, new { @class = "btn btn-success" })
-                    @Html.ActionLink("Delete", "DeleteReport", new { Pid = item.Pid, ReportTypeId = item.ReportTypeId, ReportId = item.ReportId }, new { @class = "btn btn-danger" })
                     @Html.ActionLink("Edit", "EditPrintReport", new { Pid = item.Pid, BillId = item.BillId, ReportId = item.ReportId }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Bill", "GetBillingInfo", "Billing", new { BillId = item.BillId }, new { @class = "btn btn-danger" })
+
 
                     @*@if (item.ReportTypeId == 1)
                         {
@@ -111,3 +114,10 @@
 
     </table>
 </div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $('#CreateBill').click(function () {
+        var id = $('#BillId').val();
+        window.location.replace("http://localhost:54429/Billing/GetBillingInfo/?BillId=" + id);
+    });
+</script>   

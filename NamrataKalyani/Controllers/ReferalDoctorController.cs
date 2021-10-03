@@ -9,13 +9,24 @@ using System.Data.SqlClient;
 using PagedList;
 using PagedList.Mvc;
 using NamrataKalyani.Models;
+using NamrataKalyani.CustomAttribute;
 
 namespace NamrataKalyani.Controllers
 {
+    [Authorize]
+    [SessionTimeoutAttribute]
     public class ReferalDoctorController : Controller
     {
         // GET: ReferalDoctor
         // GET: ReferDoc
+        int UserId;
+        public ReferalDoctorController()
+        {
+            if (System.Web.HttpContext.Current.Session["UserId"] != null)
+            {
+                UserId = Convert.ToInt32(System.Web.HttpContext.Current.Session["UserId"]);
+            }
+        }
         public ActionResult ReferDocIndex(int? page)
         {
             var rd = RetuningData.ReturnigList<ReferalDoctorModel>("usp_getReferDoc", null).ToPagedList(page ?? 1, 5);
@@ -35,8 +46,8 @@ namespace NamrataKalyani.Controllers
             var param = new DynamicParameters();
     
             param.Add("@DoctorName", rdm.DoctorName);
-            param.Add("@CreatedBy", 1);
-            param.Add("@UpdatedBy", 1);
+            param.Add("@CreatedBy", UserId);
+            param.Add("@UpdatedBy", UserId);
 
             int i = RetuningData.AddOrSave<int>("uspAddDoctor", param);
             if (i > 0)
@@ -65,7 +76,7 @@ namespace NamrataKalyani.Controllers
             param.Add("@DoctorName", rdm.DoctorName);
             //param.Add("@Email", rdm.Email);
             //param.Add("@Mobile", rdm.Mobile);
-             param.Add("@UpdatedBy", 1);
+             param.Add("@UpdatedBy", UserId);
           
 
             int i = RetuningData.AddOrSave<int>("sp_UpdateReferDoctorById", param);

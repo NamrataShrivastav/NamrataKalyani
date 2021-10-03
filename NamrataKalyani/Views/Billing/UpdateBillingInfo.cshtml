@@ -22,7 +22,7 @@
         <label>Total Amount</label>
         <input type="text" name="Amount" id="amount" value="@Model.Amount"  class="form-control"   />
         <label>Referal Discount %</label>
-        <input type="text" name="ReferalPercentage" disabled="disabled" width="20" id="referalPercentage" value="@Model.ReferalPercentage" class="form-control" />
+        <input type="text" name="ReferalPercentage"   width="20" id="referalPercentage" value="@Model.ReferalPercentage" class="form-control" />
     </div>
     <div class="form-group">
         <label>Discount</label>
@@ -30,7 +30,7 @@
     </div>
     <div class="form-group">
         <label>Referal Amount</label>
-        <input type="text" name="ReferalAmount" id="referalAmount" disabled="disabled" value="@Model.ReferalAmount"  class="form-control" />
+        <input type="text" name="ReferalAmount" id="referalAmount"  value="@Model.ReferalAmount"  class="form-control" />
     </div>
     <div class="form-group">
         <label>Due</label>
@@ -55,7 +55,7 @@
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script>
     $('#referalPercentage').on('change', function () {
-        alert('text');
+       
         var amt = $("#amount").val();
         var per = $("#referalPercentage").val();
         var res = (amt / 100) * per;

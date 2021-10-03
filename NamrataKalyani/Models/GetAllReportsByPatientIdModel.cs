@@ -17,6 +17,8 @@ namespace NamrataKalyani.Models
         public int CreatedBy { get; set; }
         public int UpdatedBy { get; set; }
         public string Printer_Name { get; set; }
+        public string CreatedName { get; set; }
+        public string UpdatedName { get; set; }
 
     }
 }

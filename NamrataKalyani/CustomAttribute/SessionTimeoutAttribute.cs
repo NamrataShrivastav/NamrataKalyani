@@ -12,9 +12,9 @@ namespace NamrataKalyani.CustomAttribute
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             HttpContext ctx = HttpContext.Current;
-            if (String.IsNullOrEmpty(HttpContext.Current.Session["UserName"].ToString()))
+            if (String.IsNullOrEmpty(HttpContext.Current.Session["UserId"].ToString()))
             {
-                filterContext.Result = new RedirectResult("~/Doc/Login");
+                filterContext.Result = new RedirectResult("~/Login/Login");
                 return;
             }
             base.OnActionExecuting(filterContext);

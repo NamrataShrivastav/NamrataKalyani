@@ -17,13 +17,18 @@ namespace NamrataKalyani.Controllers
     [SessionTimeoutAttribute]
     public class ReportsController : Controller
     {
+        int UserId;
+        public ReportsController()
+        {
+            if (System.Web.HttpContext.Current.Session["UserId"] != null)
+            {
+                UserId = Convert.ToInt32(System.Web.HttpContext.Current.Session["UserId"]);
+            }
+        }
+
         // GET: Reports
-        public ActionResult Index(int? page)        {            var rm = RetuningData.ReturnigList<ReportModel>("sp_getReports", null).ToPagedList(page ?? 1, 3);
-            return View(rm);        }
-
-
-
-
+        public ActionResult Index(int? page)        {            var rm = RetuningData.ReturnigList<ReportModel>("sp_getReports", null).ToPagedList(page ?? 1, 10);
+            return View(rm);        }        
         public ActionResult Create()
         {
             return View();
@@ -36,8 +41,8 @@ namespace NamrataKalyani.Controllers
             param.Add("@RName", rem.ReportType);
             param.Add("@Description", rem.Description);
             param.Add("@ShortName", rem.ShortName);
-            param.Add("@CreatedBy", 1);
-            param.Add("@UpdatedBy", 1);
+            param.Add("@CreatedBy", UserId);
+            param.Add("@UpdatedBy", UserId);
 
             int i = RetuningData.AddOrSave<int>("sp_SaveReport", param);
             if (i > 0)
@@ -60,7 +65,7 @@ namespace NamrataKalyani.Controllers
             return View(rm);
         }
 
-        [HttpPost]        public ActionResult Edit(ReportModel rm)        {            var param = new DynamicParameters();            param.Add("@Rid", rm.Id);            param.Add("@RName", rm.ReportType);            param.Add("@Description", rm.Description);            param.Add("@UpdatedBy", 1);            param.Add("@UpdatedOn", DateTime.Now);            int i = RetuningData.AddOrSave<int>("usp_UpdateReportById", param);            if (i > 0)            {                return RedirectToAction("Index");            }            return View();        }
+        [HttpPost]        public ActionResult Edit(ReportModel rm)        {            var param = new DynamicParameters();            param.Add("@Rid", rm.Id);            param.Add("@RName", rm.ReportType);            param.Add("@Description", rm.Description);            param.Add("@ShortName", rm.ShortName);            param.Add("@UpdatedBy", UserId );            param.Add("@UpdatedOn", DateTime.Now);            int i = RetuningData.AddOrSave<int>("usp_UpdateReportById", param);            if (i > 0)            {                return RedirectToAction("Index");            }            return View();        }
 
 
         public ActionResult Delete(int? id)

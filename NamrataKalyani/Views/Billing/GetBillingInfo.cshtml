@@ -9,10 +9,11 @@
         white-space: nowrap;
     }
 </style>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/1.11.2/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" />
+
 
 <h2>Billing Info</h2>
 
@@ -26,11 +27,11 @@
             <input type="date" name="BeginDate" value="" class="form-control" />
         </div>
         <div class="col-md-4" style="margin-bottom:4px">
-            <label>Start Date</label>
+            <label>End Date</label>
             <input type="date" name="EndDate" value="" class="form-control" />
         </div>
         <div class="col-md-4" style="margin-bottom:4px">
-            <label></label>
+           
             <input type="submit" value="Search" class="btn-primary" />
         </div>
     </div>
@@ -142,6 +143,7 @@
         </table>
     </div>
 </div>
+
 @*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
@@ -154,7 +156,6 @@
 <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
 <script>
-
     $(document).ready(function () {
         $('#mytable').DataTable({
             dom: 'Bfrtip',
@@ -166,7 +167,7 @@
             ]
         });
     });
-
+    
     //function percentage(num, per) {
     //    return (num / 100) * per;
     //}

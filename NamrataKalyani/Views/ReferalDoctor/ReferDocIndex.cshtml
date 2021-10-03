@@ -6,10 +6,10 @@
 @*@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }*@
-
-    <p>
-        @Html.ActionLink("Create New", "CreateRecord")
-    </p>
+<h1>Doctor</h1>
+    <div style="text-align:right;">
+        @Html.ActionLink("Create New", "CreateRecord",null,new {@class="btn btn-success"})
+    </div>
     <table class="table">
         <tr>
             <th>
@@ -49,21 +49,21 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>*@
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                    @Html.DisplayFor(modelItem => item.CreatedName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedOn)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UpdatedBy)
+                    @Html.DisplayFor(modelItem => item.UpdatedName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.UpdatedOn)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "EditRecord", new { id = item.DocId }, new { @class = "btn btn-primary" })|
+                    @Html.ActionLink("Edit", "EditRecord", new { id = item.DocId }, new { @class = "btn btn-primary" })
 
-                    @Html.ActionLink("Delete", "DeleteRecord", new { id = item.DocId }, new { @class = "btn btn-danger" })
+                   @* @Html.ActionLink("Delete", "DeleteRecord", new { id = item.DocId }, new { @class = "btn btn-danger" })*@
                 </td>
             </tr>
         }

@@ -1,158 +1,165 @@
 ﻿@model NamrataKalyani.Models.PatientInfoModel
 @{ ViewBag.Title = "PatientInfo"; }
 
-<h2 style="align-content:center" class="body-content">Patient Information</h2>
+<h2 style="align-content:center" class="body-content">Create New Patient</h2>
 
-<br />
-<ul class="nav nav-tabs">
-    <li>@Html.ActionLink("Patient Details", "PatientInfo", "Doc")</li>
-    <li>@Html.ActionLink("Bill", "GetBillingInfo", "Billing")</li>
-    <li>@Html.ActionLink("Doctor", "SaveBillingInfo", "Doc")</li>
-    <li>@Html.ActionLink("Report", "SaveBillingInfo", "Doc")</li>
-</ul>
+
 <div class="container">
     <div class="panel panel-primary">
         <div class="panel-heading">Patient Details</div>
         <div class="panel-body">
             @using (Html.BeginForm("PatientInfo1", "Doc", FormMethod.Post, new { @class = "form-inline" }))
             {
-            <div class="col-md-5" style="margin-bottom:2px;">
-                @Html.Label("User Type", htmlAttributes: new { @class = "control-label" })
-                @Html.RadioButton("User Type", "Existing User", true, new { Onclick = "DisableObjects(this)" }) Existing User
-                @Html.RadioButton("User Type", "New User", new { Onclick = "EnableObjects(this)" })  New User
-            </div>
-            <div class="col-md-7" style="margin-bottom:2px;">
-                @Html.LabelFor(model => model.mobileNo, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.mobileNo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.mobileNo, "", new { @class = "text-danger" })
-                <button type="submit" class="btn btn-success" id="search">Search</button>
-            </div>
-            <div class="col-md-12" style="margin-bottom:2px;">
+                <div class="col-md-5" style="margin-bottom:2px;">
+                    @Html.Label("User Type", htmlAttributes: new { @class = "control-label" })
+                    @Html.RadioButton("User Type", "Existing User", true, new { Onclick = "DisableObjects(this)" }) Existing User
+                    @Html.RadioButton("User Type", "New User", new { Onclick = "EnableObjects(this)" })  New User
+                </div>
+                <div class="col-md-7" style="margin-bottom:2px;">
+                    @Html.LabelFor(model => model.mobileNo, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.mobileNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.mobileNo, "", new { @class = "text-danger" })
+                    <button type="submit" class="btn btn-success" id="search">Search</button>
+                </div>
+                <div class="col-md-12" style="margin-bottom:2px;">
 
-            </div>
+                </div>
             }
 
             @using (Html.BeginForm("PatientInfo", "Doc", FormMethod.Post, new { @class = "form-inline" }))
             {
 
-            <div class="col-md-4">
-                @* <input type="hidden" id="Name_Mobile" name="Name_Mobile" value="@Model!=null?@Model.Name_Mobile:@string.Empty" />*@
-                @Html.HiddenFor(model => model.Name_Mobile, new { id = "Name_Mobile" })
-                @Html.LabelFor(model => model.DoctorName)
-                @Html.DropDownList("DoctorList", null, "Select Doctor", new { @class = "form-control" })
-            </div>
-            <div class="col-md-4">
-                @Html.LabelFor(model => model.pname, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.pname, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pname, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-md-4">
-                @Html.LabelFor(model => model.age, htmlAttributes: new { @class = "control-label" })
-                @Html.EditorFor(model => model.age, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.age, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-md-12" style="margin-bottom:2px;"> </div>
-            <div class="col-md-12" style="margin-bottom:2px;"> </div>
-
-            <div class="col-md-5">
-                @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.RadioButtonFor(model => model.gender, "Male", new { @checked = true }) Male
-                @Html.RadioButtonFor(model => model.gender, "Female") Female
-
-            </div>
-            <div class="col-md-7">
-                <label class="form-inline">Report</label>
-                <select id="ReportType" multiple="multiple" class="form-control" required name="Report">
-                    @if (ViewBag.ReportType != null)
-                            {
-                                foreach (var item in ViewBag.ReportType)
-                                {
-                                    if (item.Text != null)
-                                    {
-                            <option value="@item.Value">
-                                @item.Text
-                            </option>}
-                                }
-                            }
-                </select>
-            </div>
-            <div class="col-md-4">
-
-                @Html.HiddenFor(model => model.RptId, new { id = "RptID" })
-                <div class="col-md-offset-6 col-md-10 text-center" style="margin-top:10px">
-                    <input type="submit" id="Create" class="btn btn-success" value="Create" />
+                <div class="col-md-4">
+                    @* <input type="hidden" id="Name_Mobile" name="Name_Mobile" value="@Model!=null?@Model.Name_Mobile:@string.Empty" />*@
+                    @Html.HiddenFor(model => model.Name_Mobile, new { id = "Name_Mobile" })
+                    @Html.LabelFor(model => model.DoctorName)
+                    @Html.DropDownListFor(model => model.DoctorList, (IEnumerable<SelectListItem>)ViewBag.DoctorList, "Select Doctor", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DoctorList, "", new { @class = "text-danger" })
+                 </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.pname, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.pname, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pname, "", new { @class = "text-danger" })
                 </div>
-            </div>
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.age, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.age, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.age, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-12" style="margin-bottom:2px;"> </div>
+                <div class="col-md-12" style="margin-bottom:2px;"> </div>
+
+                <div class="col-md-5">
+                    @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.RadioButtonFor(model => model.gender, "Male", new { @checked = true }) Male
+                    @Html.RadioButtonFor(model => model.gender, "Female") Female
+
+                </div>
+                <div>
+                    @Html.HiddenFor(model => model.CollectedById, new { id = "CollectedById" })
+                    @Html.LabelFor(model => model.CollectedById)
+                    @Html.DropDownListFor(model => model.CollectedById,(IEnumerable<SelectListItem>)ViewBag.CollectedByList,"Select CollectedBy", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CollectedById, "", new { @class = "text-danger" })
+
+                 </div>
+
+                <div class="col-md-7">
+                    @*<label class="form-inline">Select Report </label>
+                    <select id="ReportType" multiple="multiple" class="form-control" required name="Report">
+                        @if (ViewBag.ReportType != null)
+                        {
+                            foreach (var item in ViewBag.ReportType)
+                            {
+                                if (item.Text != null)
+                                {
+                                    <option value="@item.Value">
+                                        @item.Text
+                                    </option>}
+                            }
+                        }
+                    </select>*@
+                </div>
+                <div class="col-md-7">
+                    @Html.LabelFor(model => model.ReportTypeId)
+                    @Html.DropDownListFor(model => model.ReportTypeId, (IEnumerable<SelectListItem>)ViewBag.ReportType,null, new { @class = "form-control", id = "ReportType", multiple = "multiple", name = "Report" })
+                    @Html.ValidationMessageFor(model => model.ReportTypeId, "", new { @class = "text-danger" })
+                </div>
+                    <div class="col-md-4">
+                        @Html.HiddenFor(model => model.RptId, new { id = "RptID" })
+                        <div class="col-md-offset-6 col-md-10 text-center" style="margin-top:10px">
+                            <input type="submit" id="Create" class="btn btn-success" value="Create" />
+                        </div>
+                    </div>
 
                     }
-        </div>
+                </div>
     </div>
 
 </div>
- 
-            @*<div>
-                    @Html.ActionLink("Back to List", "Index")
-                </div>*@
-            @section Scripts {
-                @Scripts.Render("~/bundles/jqueryval")
-                <head runat="server">
-                    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-                    <script src="~/Scripts/bootstrap.js"></script>
-                    <script src="~/Scripts/bootstrap.min.js"></script>
-                    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-                    <script src="~/Scripts/bootstrap-multiselect.js"></script>
-                    <link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
-                    <script type="text/javascript">
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <head runat="server">
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/bootstrap.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/Scripts/bootstrap-multiselect.js"></script>
+        <link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
+        <script type="text/javascript">
 
 
-                        $(function () {
-                            $('#ReportType').multiselect({
-                                includeSelectAllOption: true,         /*To enable the Select all Option*/
-                                selectAllValue: 'multiselect-all',     /*The value used for the select all option can be configured using the selectAllValue*/
-                                enableFiltering: true,   /*A filter input will be added to dynamically filter all the options*/
-                                enableCaseInsensitiveFiltering: true,  /*To enable Case Insenstitive Filtering (Upper and Lower Case Letters)*/
-                                maxHeight: '300',
-                                buttonWidth: '400',
-                            });
-                        });
+            $(function () {
+                $('#ReportType').multiselect({
+                    includeSelectAllOption: true,         /*To enable the Select all Option*/
+                    selectAllValue: 'multiselect-all',     /*The value used for the select all option can be configured using the selectAllValue*/
+                    enableFiltering: true,   /*A filter input will be added to dynamically filter all the options*/
+                    enableCaseInsensitiveFiltering: true,  /*To enable Case Insenstitive Filtering (Upper and Lower Case Letters)*/
+                    maxHeight: '300',
+                    buttonWidth: '400',
+                });
+            });
 
-                        $("#Create").click(function () {
-                            var selected = $("#ReportType option:selected");    /*Current Selected Value*/
-                            var message = "";
-                            var arrSelected = [];      /*Array to store multiple values in stack*/
-                            selected.each(function () {
-                                arrSelected.push($(this).val());    /*Stack the Value*/
-                                message += $(this).text() + " " + $(this).val() + "\n";
+            $("#Create").click(function () {
+                var selected = $("#ReportType option:selected");    /*Current Selected Value*/
+                var message = "";
+                var arrSelected = [];      /*Array to store multiple values in stack*/
+                selected.each(function () {
+                    arrSelected.push($(this).val());    /*Stack the Value*/
+                    message += $(this).text() + " " + $(this).val() + "\n";
 
-                            });
+                });
 
-                            $('#RptID').val(arrSelected);
-                            $('#Name_Mobile').val($('#mobileNo').val());
+                $('#RptID').val(arrSelected);
+                $('#Name_Mobile').val($('#mobileNo').val());
 
-                        });
+            });
 
-                        function DisableObjects(rbEUser) {
-                            if (rbEUser.checked == true) {
-                                $('#pname').attr("disabled", "true");
-                                $('#age').attr("disabled", "true");
-                                $('#gender').attr("disabled", "true");
-                                $('#gender').attr("disabled", "true");
-                                //document.getElementById(pname).disabled = true;
-                                //document.getElementById(age).disabled = true;
-                                //document.getElementById(gender).disabled = true;
-                                $('#search').css('display', 'block');
-                            }
+            function DisableObjects(rbEUser) {
+                if (rbEUser.checked == true) {
+                    $('#pname').attr("disabled", "true");
+                    $('#age').attr("disabled", "true");
+                    $('#gender').attr("disabled", "true");
+                    $('#gender').attr("disabled", "true");
+                    //document.getElementById(pname).disabled = true;
+                    //document.getElementById(age).disabled = true;
+                    //document.getElementById(gender).disabled = true;
+                    $('#search').css('display', 'block');
+                }
 
-                        }
-                        function EnableObjects(rbNUser) {
-                            if (rbNUser.checked == true) {
-                                $('#pname').removeAttr("disabled");
-                                $('#age').removeAttr("disabled");
-                                $('#gender').removeAttr("disabled");
-                                $('#gender').removeAttr("disabled");
-                                $('#search').css('display', 'none');
+            }
+            function EnableObjects(rbNUser) {
+                if (rbNUser.checked == true) {
+                    $('#pname').removeAttr("disabled");
+                    $('#age').removeAttr("disabled");
+                    $('#gender').removeAttr("disabled");
+                    $('#gender').removeAttr("disabled");
+                    $('#search').css('display', 'none');
 
-                            }
-                        }
-                    </script>
-                </head>}
+                }
+            }
+        </script>
+    </head>}

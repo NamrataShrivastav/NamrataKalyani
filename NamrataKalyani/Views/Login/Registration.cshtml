@@ -116,7 +116,7 @@
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+    
 
     @*<div class="row">
         <h2 style="text-align:center">Login with Social Media or Manually</h2>
@@ -196,7 +196,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.PasswordFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -204,7 +204,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.confirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.confirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.PasswordFor(model => model.confirmPassword, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.confirmPassword, "", new { @class = "text-danger" })
                         </div>
                     </div>

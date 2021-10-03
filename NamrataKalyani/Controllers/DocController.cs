@@ -15,7 +15,7 @@ namespace NamrataKalyani.Controllers
     {
         //string hostname = "akbardiagnostic.dswebcare.com";
 
-        int UserId=1;
+        int UserId;
         public DocController()
         {
             if (System.Web.HttpContext.Current.Session["UserId"] != null)
@@ -35,32 +35,7 @@ namespace NamrataKalyani.Controllers
         {
             return View();
         }
-        public ActionResult Registration()
-        {
-            var dlist = RetuningData.ReturnigList<CenterModel>("usp_getCenter", null);
-            ViewBag.Center = new SelectList(dlist, "CenterId", "CenterName");
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Registration(RegistrationModel reg)
-        {
-            var param = new DynamicParameters();
-            param.Add("@Name", reg.name);
-            param.Add("@Email", reg.emalid);
-            param.Add("@Passward", reg.password);
-            param.Add("@Status", reg.status);
-            param.Add("@CenterId", 1);
-
-            int i = RetuningData.AddOrSave<int>("usp_getUserLogin", param);
-            if (i > 0)
-            {
-                return RedirectToAction("Login");
-            }
-            else
-            {
-                return View();
-            }
-        }
+        
 
         public ActionResult PatientInfo()
         {
@@ -74,6 +49,11 @@ namespace NamrataKalyani.Controllers
             var Billing = RetuningData.ReturnigList<ReportModel>("sp_getReports", null);
             ViewBag.ReportType = new SelectList(Reports, "Id", "ReportType");
 
+            var Clist = RetuningData.ReturnigList<PatientInfoModel>("uspGetCollectedByList", null);
+            ViewBag.CollectedByList = new SelectList(Clist, "CollectedById", "CollectedById");
+            
+
+
             return View();
         }
 
@@ -84,10 +64,11 @@ namespace NamrataKalyani.Controllers
             param.Add("@Pname", pm.pname);
             param.Add("@Age", pm.age);
             param.Add("@Gender", pm.gender);
+            param.Add("@CollectedById", pm.CollectedByList);
             param.Add("@RefDocId", pm.DoctorList);
             param.Add("@mobileNo", pm.Name_Mobile);
             param.Add("@CreatedBy", UserId);
-            param.Add("@UpdatedBy", 1);
+            param.Add("@UpdatedBy", UserId);
 
 
             int Pid = RetuningData.ReturnSingleValue<int>("AddNewPatientInfoDetails", param);
@@ -138,8 +119,8 @@ namespace NamrataKalyani.Controllers
             param.Add("@Basophils", cbrm.basophils);
             param.Add("@Rbcs", cbrm.rbcs);
             param.Add("@PlateletCount", cbrm.plateletCount);
-            param.Add("@CreatedBy", cbrm.CreatedBy);
-            param.Add("@UpdatedBy", cbrm.UpdatedBy);
+            param.Add("@CreatedBy", UserId);
+            param.Add("@UpdatedBy", UserId);
 
             int i = RetuningData.AddOrSave<int>("AddNewComputerBloodPictureReportDetails", param);
             if (i > 0)
@@ -184,8 +165,8 @@ namespace NamrataKalyani.Controllers
             param.Add("@THDL", lipid.THDL);
             param.Add("@LDLHDL", lipid.LDLHDL);
             param.Add("@titalLipid", lipid.titalLipid);
-            param.Add("@CreatedBy", lipid.titalLipid);
-            param.Add("@UpdatedBy", lipid.titalLipid);
+            param.Add("@CreatedBy", UserId);
+            param.Add("@UpdatedBy", UserId);
 
             int i = RetuningData.AddOrSave<int>("AddNewClinicalBiochemistoryReportLIPIDProfileDetails", param);
             if (i > 0)
@@ -203,7 +184,7 @@ namespace NamrataKalyani.Controllers
             return View(rlipid);
         }
         public ActionResult Print_LIPIDProfileReport(ReportByPidModel rpt)        {            var param = new DynamicParameters();            param.Add("@Pid", rpt.Pid);            param.Add("@ReportId", rpt.ReportId);
-            param.Add("@BillId", rpt.BillId);            ReportByPidModel pat = RetuningData.ReturnigList<ReportByPidModel>("usp_PrintReport", param).SingleOrDefault();            if (rpt.Pid != null)            {                pat.Srno = (int)rpt.Pid;            }            return View(pat);        }
+            param.Add("@BillId", rpt.BillId);            ReportByPidModel pat = RetuningData.ReturnigList<ReportByPidModel>("usp_PrintReport", param).SingleOrDefault();            if (rpt.Pid != null)            {                pat.Srno = rpt.Pid;            }            return View(pat);        }
 
         public ActionResult ClinicalBiochemistoryReportLTF()
         {
@@ -224,8 +205,8 @@ namespace NamrataKalyani.Controllers
             param.Add("@serumGlubulin", ltf.serumGlubulin);
             param.Add("@AGRation", ltf.AGRation);
             param.Add("@serumAlkalinePhosphatse", ltf.serumAlkalinePhosphatse);
-            param.Add("@CreatedBy", 1);
-            param.Add("@UpdatedBy", 1);
+            param.Add("@CreatedBy", UserId);
+            param.Add("@UpdatedBy", UserId);
             int i = RetuningData.AddOrSave<int>("AddNewClinicalBiochemistoryReportLTFDetails", param);
             if (i > 0)
             {
@@ -472,6 +453,8 @@ namespace NamrataKalyani.Controllers
                 ViewBag.ReportType = new SelectList(Reports, "Id", "ReportType");
                 var dlist = RetuningData.ReturnigList<PatientInfoModel>("uspGetDoctotList", null);
                 ViewBag.DoctorList = new SelectList(dlist, "docid", "DoctorName");
+                var Clist = RetuningData.ReturnigList<PatientInfoModel>("uspGetCollectedByList", null);                ViewBag.CollectedByList = new SelectList(Clist, "CollectedById", "CollectedById");                
+
                 return View("PatientInfo", i);
             }
             else
@@ -500,7 +483,7 @@ namespace NamrataKalyani.Controllers
             if (obj.Pid != null)            {                pat.Srno = (int)obj.Pid;            }            return View(pat);        }        [HttpPost]        public ActionResult EditPrintReport(ReportByPidModel obj)        {
             var param = new DynamicParameters();
             param.Add("@BillID", obj.BillId);            param.Add("@RptID", obj.ReportId);
-            param.Add("@Description", obj.Description);            param.Add("@UpdatedBy", obj.Pid);            int pat = RetuningData.AddOrSave<int>("usp_UpdatePrintReportById", param);
+            param.Add("@Description", obj.Description);            param.Add("@UpdatedBy", UserId);            int pat = RetuningData.AddOrSave<int>("usp_UpdatePrintReportById", param);
             return RedirectToAction("GetAllReportsByPatientId", new { id = obj.Pid });        }
     }
 }

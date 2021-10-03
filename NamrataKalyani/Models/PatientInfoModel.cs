@@ -26,18 +26,22 @@ namespace NamrataKalyani.Models
         //public SelectList DoctorList { get; set; }
 
         [DisplayName("Doctor Name")]
+        [Required(ErrorMessage ="Select Doctor")]
         public string DoctorName { get; set; }
         public string SelectedDoctor { get; set; }
 
         [DisplayName("Patient Name")]
+        [Required(ErrorMessage ="Enter Patient")]
         public string pname { get; set; }
         [DisplayName("Age")]
+        [Required(ErrorMessage = "Enter Age")]
         public int? age { get; set; }
         [DisplayName("Ref. By Doctor")]
         public string RefByDoc { get; set; }
         [DisplayName("Gender")]
         public string gender { get; set; }
         [DisplayName("Mobile No.")]
+        [Required(ErrorMessage ="Enter Mobile Number")]
         public string mobileNo { get; set; }
         public string Name_Mobile { get; set; }
 
@@ -49,17 +53,25 @@ namespace NamrataKalyani.Models
 
         public int? CreatedBy { get; set; }
         public int? UpdatedBy { get; set; }
-
+        public string CreatedName { get; set; }
+        public  string UpdatedName { get; set; }
+        [Display(Name="Select Report")]
+        [Required(ErrorMessage ="Select Atleast One Report")]
         public int ReportTypeId { get; set; }
         public int ReportId { get; set; }
 
         public int ID { get; set; }
-
+        [Required]
         public string Name { get; set; }
-
+         
         public string RptId { get; set; }
 
+        [Required]
         public string DoctorList { get; set; }
+        public string CollectedByList { get; set; }
+              [DisplayName("CollectedBy")]        [Required(ErrorMessage =("Select Collected By"))]        public int CollectedById { get; set; }
+
+
     }
 
     public class PatientInfoOldModel

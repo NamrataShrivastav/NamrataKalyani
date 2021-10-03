@@ -35,10 +35,37 @@ namespace NamrataKalyani.Controllers
                 }
 
                 Session["UserId"] = _login.id;
-
+                Session["RoleId"] = _login.RoleId;
                 FormsAuthentication.SetAuthCookie(_login.Name, false);
 
                 return RedirectToAction("Dashboard","Doc");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        public ActionResult Registration()
+        {
+            var dlist = RetuningData.ReturnigList<CenterModel>("usp_getCenter", null);
+            ViewBag.Center = new SelectList(dlist, "CenterId", "CenterName");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Registration(RegistrationModel reg)
+        {
+            var param = new DynamicParameters();
+            param.Add("@Name", reg.name);
+            param.Add("@Email", reg.emalid);
+            param.Add("@Passward", reg.password);
+            param.Add("@Status", reg.status);
+            param.Add("@CenterId", 1);
+
+            int i = RetuningData.AddOrSave<int>("usp_getUserLogin", param);
+            if (i > 0)
+            {
+                return RedirectToAction("Login");
             }
             else
             {

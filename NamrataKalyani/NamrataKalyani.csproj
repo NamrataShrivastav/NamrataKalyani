@@ -175,19 +175,23 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\boxicons.min.css" />
     <Content Include="Content\Design\fancyTable.min.js" />
     <Content Include="Content\Forms.css" />
     <Content Include="Content\Images\PrintIcon.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Print.css" />
     <Content Include="Content\prism.css" />
+    <Content Include="Content\Slider.css" />
     <Content Include="Database\02-Oct-Script.sql" />
+    <Content Include="Database\03-01-2021_script.sql" />
     <Content Include="Database\06-09-2021_Diognastic.sql" />
     <Content Include="Database\10-09-2021_script_Diognastic.sql" />
     <Content Include="Database\22092021Diagnostic.sql" />
     <Content Include="Database\27sep2021_script.sql" />
     <Content Include="Document\Example.png" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\boxicons.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -234,6 +238,10 @@
     <Content Include="Document\Pt.doc" />
     <Content Include="Document\SERUM_ADA.doc" />
     <Content Include="Document\SERUM_AMYLASE.doc" />
+    <Content Include="fonts\boxicons.eot" />
+    <Content Include="fonts\boxicons.ttf" />
+    <Content Include="fonts\boxicons.woff" />
+    <Content Include="fonts\boxicons.woff2" />
     <None Include="Properties\PublishProfiles\AkberPublish.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -247,6 +255,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\tinymce.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -267,7 +276,7 @@
     <Content Include="Views\Doc\PatientInfo.cshtml" />
     <Content Include="Views\Doc\TestDemo.cshtml" />
     <Content Include="Views\Shared\_PatientDetails.cshtml" />
-    <Content Include="Views\Doc\Registration.cshtml" />
+    <Content Include="Views\Login\Registration.cshtml" />
     <Content Include="Views\Doc\Login.cshtml" />
     <Content Include="Views\Doc\PatientList.cshtml" />
     <Content Include="Views\Doc\ComputerBloodPictureReportList.cshtml" />
@@ -299,11 +308,11 @@
     <Content Include="Views\Billing\UpdateBillingInfo.cshtml" />
     <Content Include="Views\Doc\EditPrintReport.cshtml" />
     <Content Include="Views\Shared\_MyLayout.cshtml" />
+    <Content Include="Views\Shared\_LayoutPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Upload\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
